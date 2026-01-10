@@ -23,9 +23,11 @@ const Navbar = () => {
   }
 
   const navItems = [
+    { name: 'Home', id: 'home' },
     { name: 'About', id: 'about' },
     { name: 'Skills', id: 'skills' },
     { name: 'Projects', id: 'projects' },
+    { name: 'Timeline', id: 'timeline' },
     { name: 'Contact', id: 'contact' }
   ]
 
@@ -45,12 +47,12 @@ const Navbar = () => {
             className="flex items-center space-x-3 group"
             whileHover={{ scale: 1.05 }}
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-lg">V</span>
+            <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 via-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
+              <span className="text-white font-bold text-xl">V</span>
             </div>
             <div className="hidden sm:block">
-              <div className="text-xl font-bold text-white">Vikas Uniyal</div>
-              <div className="text-xs text-indigo-400 -mt-1">Full Stack Developer</div>
+              <div className="text-xl font-bold bg-gradient-to-r from-white to-indigo-200 bg-clip-text text-transparent">Vikas Uniyal</div>
+              <div className="text-sm text-indigo-400 -mt-1 font-medium">Full Stack Developer</div>
             </div>
           </motion.button>
 
@@ -71,12 +73,12 @@ const Navbar = () => {
             ))}
             
             <motion.button
-              className="btn-secondary flex items-center space-x-2"
-              whileHover={{ scale: 1.05 }}
+              className="btn-primary flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+              whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Download size={16} />
-              <span>View CV</span>
+              <Download size={18} />
+              <span>Resume</span>
             </motion.button>
           </div>
 
@@ -106,9 +108,9 @@ const Navbar = () => {
                   {item.name}
                 </button>
               ))}
-              <button className="btn-secondary w-full flex items-center justify-center space-x-2 mt-4">
-                <Download size={16} />
-                <span>View CV</span>
+              <button className="btn-primary w-full flex items-center justify-center space-x-2 mt-6 px-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-xl font-semibold">
+                <Download size={18} />
+                <span>Resume</span>
               </button>
             </div>
           </motion.div>

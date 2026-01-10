@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Send, User, MessageSquare } from 'lucide-react'
+import { Mail, Send, User, MessageSquare, Facebook, Instagram } from 'lucide-react'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -112,7 +112,7 @@ const Contact = () => {
             </button>
           </motion.form>
 
-          {/* Direct Contact */}
+          {/* Direct Contact & Social Media */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -120,7 +120,37 @@ const Contact = () => {
             viewport={{ once: true }}
             className="text-center mt-12"
           >
-            <p className="text-body mb-4">Or reach out directly:</p>
+            <h3 className="text-xl font-semibold text-white mb-6">Connect with me</h3>
+            
+            {/* Social Links */}
+            <div className="flex justify-center space-x-6 mb-8">
+              <a 
+                href="mailto:vikasuniyalcsa@gmail.com"
+                className="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                <Mail size={24} className="text-white" />
+              </a>
+              
+              <a 
+                href="https://facebook.com/vikasuniyal" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                <Facebook size={24} className="text-white" />
+              </a>
+              
+              <a 
+                href="https://instagram.com/vikasuniyal" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-14 h-14 bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 rounded-xl flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                <Instagram size={24} className="text-white" />
+              </a>
+            </div>
+            
+            <p className="text-body mb-2">Or email me directly:</p>
             <a 
               href="mailto:vikasuniyalcsa@gmail.com"
               className="text-indigo-400 hover:text-indigo-300 font-medium text-lg transition-colors duration-200"
