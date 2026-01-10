@@ -30,7 +30,7 @@ const Timeline = () => {
       type: 'education',
       icon: GraduationCap,
       year: '2021 - 2023',
-      title: 'Computer Science',
+      title: 'Computer Software Application',
       company: 'University',
       description: 'Focused on software engineering, data structures, algorithms, and modern web development technologies.',
       skills: ['Java', 'Python', 'Database Design', 'Software Engineering']
