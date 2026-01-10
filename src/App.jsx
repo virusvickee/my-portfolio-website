@@ -11,8 +11,10 @@ import StatsCounter from './components/StatsCounter'
 import Testimonials from './components/Testimonials'
 import Blog from './components/Blog'
 import Contact from './components/Contact'
+import Newsletter from './components/Newsletter'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import ChatAssistant from './components/ChatAssistant'
 
 function App() {
   return (
@@ -28,9 +30,11 @@ function App() {
       <StatsCounter />
       <Testimonials />
       <Blog />
+      <Newsletter />
       <Contact />
       <Footer />
       <ScrollToTop />
+      <ChatAssistant />
     </div>
   )
 }

@@ -23,7 +23,7 @@ const Blog = () => {
       date: 'Nov 28, 2024',
       readTime: '12 min read',
       category: 'PHP',
-      image: 'https://images.unsplash.com/photo-1599507593548-1e537c5c6d4c?w=600&h=400&fit=crop',
+      image: 'https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?w=600&h=400&fit=crop',
       slug: 'php-modern-development'
     },
     {
@@ -50,7 +50,7 @@ const Blog = () => {
 
   return (
     <section id="blog" className="section-padding">
-      <div className="container-custom">
+      <div className="container-premium">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}

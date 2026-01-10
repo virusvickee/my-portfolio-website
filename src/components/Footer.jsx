@@ -1,8 +1,18 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react'
+import React, { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Github, Linkedin, Mail, ArrowUp, ExternalLink } from 'lucide-react'
 
 const Footer = () => {
+  const [showBackToTop, setShowBackToTop] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > window.innerHeight * 0.3)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -14,125 +24,177 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const quickLinks = [
-    { name: 'About', id: 'about' },
-    { name: 'Skills', id: 'skills' },
-    { name: 'Projects', id: 'projects' },
-    { name: 'Contact', id: 'contact' },
-    { name: 'Services', id: 'about' }
-  ]
-
-  const services = [
-    'Web Development',
-    'React Applications', 
-    'Backend Development',
-    'Database Design',
-    'API Integration'
-  ]
-
   return (
-    <footer className="relative bg-[#070A14] border-t border-gray-800/50">
+    <footer className="relative bg-[#070A14] overflow-hidden">
       {/* Gradient divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/40 via-purple-500/40 to-transparent" />
       
-      <div className="container-premium py-16">
-        {/* Main footer content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
           
-          {/* Column 1 - Branding */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-2xl flex items-center justify-center mr-4">
-                <span className="text-white font-bold text-xl">V</span>
+          {/* Section 1 - Identity & Trust */}
+          <div className="lg:col-span-5">
+            <div className="flex items-center mb-8">
+              <div className="w-14 h-14 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl flex items-center justify-center mr-4">
+                <span className="text-white font-bold text-2xl tracking-tight">V</span>
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-white">Vikas Uniyal</h3>
-                <p className="text-indigo-400 font-medium">Full Stack Developer</p>
+                <h3 className="text-2xl font-semibold text-white tracking-tight">Vikas Uniyal</h3>
+                <p className="text-gray-400 font-medium">Full Stack Developer</p>
               </div>
             </div>
-            <p className="text-gray-400 leading-relaxed max-w-md mb-8">
-              Building modern web applications with clean code, responsive design, and user-focused solutions.
+            
+            <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-md">
+              Building scalable, user-focused web applications with modern technologies and clean architecture.
             </p>
             
-            {/* Social Icons */}
-            <div className="flex space-x-4">
-              <a 
-                href="https://github.com/virusvickee" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 glass rounded-xl hover:bg-white/20 transition-all duration-200 hover:scale-110"
-              >
-                <Github size={20} />
-              </a>
-              <a 
-                href="https://linkedin.com/in/vikas-uniyal" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 glass rounded-xl hover:bg-white/20 transition-all duration-200 hover:scale-110"
-              >
-                <Linkedin size={20} />
-              </a>
-              <a 
-                href="mailto:vikasuniyalcsa@gmail.com"
-                className="p-3 glass rounded-xl hover:bg-white/20 transition-all duration-200 hover:scale-110"
-              >
-                <Mail size={20} />
-              </a>
+            <div className="w-12 h-px bg-gradient-to-r from-blue-500 to-purple-500 mb-6" />
+            
+            <div className="inline-flex items-center px-3 py-1.5 bg-green-500/10 border border-green-500/20 rounded-full">
+              <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse" />
+              <span className="text-green-400 text-sm font-medium">Available for work</span>
             </div>
           </div>
 
-          {/* Column 2 - Quick Links */}
-          <div>
-            <h4 className="text-white font-semibold mb-6 text-lg">Quick Links</h4>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.id}>
-                  <button
-                    onClick={() => scrollToSection(link.id)}
-                    className="text-gray-400 hover:text-white hover:underline hover:underline-offset-4 transition-all duration-200"
-                  >
-                    {link.name}
-                  </button>
+          {/* Section 2 - Navigation */}
+          <div className="lg:col-span-2">
+            <div className="space-y-8">
+              <div>
+                <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider opacity-90">Explore</h4>
+                <ul className="space-y-3">
+                  {[
+                    { name: 'About', id: 'about' },
+                    { name: 'Skills', id: 'skills' },
+                    { name: 'Projects', id: 'projects' },
+                    { name: 'Timeline', id: 'timeline' },
+                    { name: 'Certifications', id: 'certifications' },
+                    { name: 'Testimonials', id: 'testimonials' },
+                    { name: 'Blog', id: 'blog' }
+                  ].map((link) => (
+                    <li key={link.id}>
+                      <button
+                        onClick={() => scrollToSection(link.id)}
+                        className="group text-gray-400 hover:text-white transition-all duration-200 flex items-center"
+                      >
+                        <span className="group-hover:translate-x-1 transition-transform duration-200">{link.name}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider opacity-90">Work</h4>
+                <ul className="space-y-3">
+                  <li>
+                    <button
+                      onClick={() => scrollToSection('contact')}
+                      className="group text-gray-400 hover:text-white transition-all duration-200 flex items-center"
+                    >
+                      <span className="group-hover:translate-x-1 transition-transform duration-200">Contact</span>
+                    </button>
+                  </li>
+                  <li>
+                    <a
+                      href="/resume.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group text-gray-400 hover:text-white transition-all duration-200 flex items-center"
+                    >
+                      <span className="group-hover:translate-x-1 transition-transform duration-200">Resume</span>
+                      <ExternalLink size={14} className="ml-1 opacity-60" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Section 3 - Expertise Snapshot */}
+          <div className="lg:col-span-3">
+            <h4 className="text-white font-semibold mb-6 text-sm uppercase tracking-wider opacity-90">Expertise</h4>
+            <ul className="space-y-4">
+              {[
+                'React & Frontend Systems',
+                'Backend APIs & Databases', 
+                'AI-assisted Applications',
+                'Performance & Optimization'
+              ].map((skill) => (
+                <li key={skill} className="group flex items-center">
+                  <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-3 group-hover:bg-purple-400 transition-colors duration-200" />
+                  <span className="text-gray-400 group-hover:text-gray-300 transition-colors duration-200">{skill}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 3 - Services */}
-          <div>
-            <h4 className="text-white font-semibold mb-6 text-lg">Services</h4>
-            <ul className="space-y-3">
-              {services.map((service) => (
-                <li key={service}>
-                  <span className="text-gray-400 hover:text-gray-300 transition-colors duration-200 cursor-default">
-                    {service}
-                  </span>
-                </li>
-              ))}
-            </ul>
+          {/* Section 4 - Connection & Proof */}
+          <div className="lg:col-span-2">
+            <h4 className="text-white font-semibold mb-6 text-sm uppercase tracking-wider opacity-90">Connect</h4>
+            
+            <div className="space-y-4 mb-6">
+              <a 
+                href="mailto:vikasuniyalcsa@gmail.com"
+                className="group flex items-center p-3 bg-white/3 border border-white/10 rounded-xl hover:bg-white/5 hover:border-white/20 transition-all duration-200"
+              >
+                <Mail size={18} className="text-blue-400 mr-3" />
+                <div>
+                  <div className="text-white text-sm font-medium">Email</div>
+                  <div className="text-gray-400 text-xs">Primary contact</div>
+                </div>
+              </a>
+              
+              <div className="flex space-x-3">
+                <a 
+                  href="https://github.com/virusvickee" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group p-3 bg-white/3 border border-white/10 rounded-xl hover:bg-white/5 hover:border-white/20 hover:shadow-lg hover:shadow-white/5 transition-all duration-200"
+                >
+                  <Github size={18} className="text-gray-400 group-hover:text-white transition-colors duration-200" />
+                </a>
+                <a 
+                  href="https://linkedin.com/in/vikas-uniyal" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group p-3 bg-white/3 border border-white/10 rounded-xl hover:bg-white/5 hover:border-white/20 hover:shadow-lg hover:shadow-white/5 transition-all duration-200"
+                >
+                  <Linkedin size={18} className="text-gray-400 group-hover:text-white transition-colors duration-200" />
+                </a>
+              </div>
+            </div>
+            
+            <p className="text-gray-500 text-xs">Response time: &lt; 24h</p>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-16 pt-8 border-t border-gray-800/50 text-center">
-          <p className="text-gray-500">
-            © 2026 Vikas Uniyal
-          </p>
+        {/* Footer base bar */}
+        <div className="mt-20 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center">
+          <p className="text-gray-500 text-sm opacity-70">© 2026 Vikas Uniyal</p>
+          <div className="flex space-x-6 mt-4 sm:mt-0">
+            <a href="/privacy" className="text-gray-500 text-sm opacity-70 hover:opacity-100 transition-opacity duration-200">Privacy</a>
+            <a href="/terms" className="text-gray-500 text-sm opacity-70 hover:opacity-100 transition-opacity duration-200">Terms</a>
+          </div>
         </div>
       </div>
 
       {/* Back to top button */}
-      <motion.button
-        onClick={scrollToTop}
-        className="fixed bottom-8 right-8 p-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-full shadow-lg hover:shadow-xl hover:shadow-indigo-500/25 transition-all duration-300 z-50 hover:scale-110"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-      >
-        <ArrowUp size={24} />
-      </motion.button>
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 p-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-200 z-50 group"
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            title="Back to top"
+          >
+            <ArrowUp size={20} className="group-hover:-translate-y-0.5 transition-transform duration-200" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </footer>
   )
 }
