@@ -49,15 +49,6 @@ The build files will be generated in the `dist` directory.
 
 ## 🚀 Deployment
 
-### Netlify (Recommended)
-
-1. Connect your GitHub repository to Netlify
-2. Set build command: `npm run build`
-3. Set publish directory: `dist`
-4. Deploy!
-
-The `netlify.toml` file is already configured for seamless deployment.
-
 ### Manual Deployment
 
 1. Run `npm run build`
