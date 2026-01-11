@@ -45,19 +45,10 @@ const Navbar = () => {
           {/* Logo */}
           <motion.button 
             onClick={() => scrollToSection('home')}
-            className="flex items-center space-x-3 group"
+            className="flex items-center group"
             whileHover={{ scale: 1.05 }}
           >
-            <motion.img 
-              src="/logo.png" 
-              alt="Logo" 
-              className="h-8 w-auto"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-            />
             <motion.div 
-              className="hidden sm:block"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
