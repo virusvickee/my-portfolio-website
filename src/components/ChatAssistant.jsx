@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { MessageCircle, Send, X, Bot, User } from 'lucide-react'
+import { Send, X, Bot, User } from 'lucide-react'
 
 const ChatAssistant = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -148,7 +148,7 @@ const ChatAssistant = () => {
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
         >
-          {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
+          {isOpen ? <X size={24} /> : <img src="/chatbot.png" alt="Chatbot" className="w-6 h-6" />}
         </motion.div>
         
         {/* Pulse ring animation */}
@@ -197,7 +197,7 @@ const ChatAssistant = () => {
                     ease: "easeInOut"
                   }}
                 >
-                  <Bot size={20} className="text-white" />
+                  <img src="/chatbot.png" alt="Chatbot" className="w-5 h-5" />
                 </motion.div>
                 <div>
                   <motion.h3 

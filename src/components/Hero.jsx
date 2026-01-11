@@ -96,7 +96,9 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col sm:flex-row gap-6 mb-16"
           >
-            <motion.button 
+            <motion.a 
+              href="/Vikas_Uniyal - Resume.pdf"
+              download="Vikas_Uniyal_Resume.pdf"
               className="relative group overflow-hidden"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -105,9 +107,9 @@ const Hero = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-300" />
               <div className="relative flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white font-semibold">
                 <Download size={18} />
-                <span>View CV</span>
+                <span>Download Resume</span>
               </div>
-            </motion.button>
+            </motion.a>
             
             <motion.button 
               onClick={() => scrollToSection('projects')}
