@@ -21,7 +21,7 @@ const Projects = () => {
       status: 'completed',
       statusText: 'Completed',
       github: 'https://github.com/virusvickee',
-      live: '#',
+      live: 'https://freshmart-ecommerc.netlify.app/',
       featured: true,
       image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop&crop=center'
     },
@@ -45,7 +45,7 @@ const Projects = () => {
       status: 'completed',
       statusText: 'Completed',
       github: 'https://github.com/virusvickee',
-      live: '#',
+      live: 'https://collage-management-system-principal.netlify.app/',
       featured: true,
       image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop&crop=center'
     },

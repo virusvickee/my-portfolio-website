@@ -99,15 +99,6 @@ const Navbar = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-500 to-blue-500 group-hover:w-full transition-all duration-300" />
               </motion.button>
             ))}
-            
-            <motion.button
-              className="btn-primary flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Download size={18} />
-              <span>Resume</span>
-            </motion.button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -136,10 +127,6 @@ const Navbar = () => {
                   {item.name}
                 </button>
               ))}
-              <button className="btn-primary w-full flex items-center justify-center space-x-2 mt-6 px-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-xl font-semibold">
-                <Download size={18} />
-                <span>Resume</span>
-              </button>
             </div>
           </motion.div>
         )}
