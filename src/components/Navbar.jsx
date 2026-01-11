@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Menu, X, Download } from 'lucide-react'
 import { motion } from 'framer-motion'
+import TypingAnimation from './TypingAnimation'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -47,13 +48,39 @@ const Navbar = () => {
             className="flex items-center space-x-3 group"
             whileHover={{ scale: 1.05 }}
           >
-            <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 via-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-xl">V</span>
-            </div>
-            <div className="hidden sm:block">
-              <div className="text-xl font-bold bg-gradient-to-r from-white to-indigo-200 bg-clip-text text-transparent">Vikas Uniyal</div>
-              <div className="text-sm text-indigo-400 -mt-1 font-medium">Full Stack Developer</div>
-            </div>
+            <motion.img 
+              src="/logo.png" 
+              alt="Logo" 
+              className="h-8 w-auto"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            />
+            <motion.div 
+              className="hidden sm:block"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <motion.div 
+                className="text-xl font-bold bg-gradient-to-r from-white to-indigo-200 bg-clip-text text-transparent"
+                whileHover={{ scale: 1.02 }}
+              >
+                Vikas Uniyal
+              </motion.div>
+              <motion.div 
+                className="text-sm text-indigo-400 -mt-1 font-medium"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <TypingAnimation 
+                  text="Full Stack Developer" 
+                  delay={800} 
+                  speed={80}
+                />
+              </motion.div>
+            </motion.div>
           </motion.button>
 
           {/* Desktop Navigation */}

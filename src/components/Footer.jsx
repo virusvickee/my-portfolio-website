@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Github, Linkedin, Mail, ArrowUp, ExternalLink } from 'lucide-react'
+import TypingAnimation from './TypingAnimation'
 
 const Footer = () => {
   const [showBackToTop, setShowBackToTop] = useState(false)
@@ -34,15 +35,45 @@ const Footer = () => {
           
           {/* Section 1 - Identity & Trust */}
           <div className="lg:col-span-5">
-            <div className="flex items-center mb-8">
-              <div className="w-14 h-14 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl flex items-center justify-center mr-4">
-                <span className="text-white font-bold text-2xl tracking-tight">V</span>
-              </div>
-              <div>
-                <h3 className="text-2xl font-semibold text-white tracking-tight">Vikas Uniyal</h3>
-                <p className="text-gray-400 font-medium">Full Stack Developer</p>
-              </div>
-            </div>
+            <motion.div 
+              className="flex items-center mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <motion.img 
+                src="/logo.png" 
+                alt="Logo" 
+                className="h-12 w-auto mr-4"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              />
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <motion.h3 
+                  className="text-2xl font-semibold text-white tracking-tight"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  Vikas Uniyal
+                </motion.h3>
+                <motion.p 
+                  className="text-gray-400 font-medium"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                >
+                  <TypingAnimation 
+                    text="Full Stack Developer" 
+                    delay={1000} 
+                    speed={80}
+                  />
+                </motion.p>
+              </motion.div>
+            </motion.div>
             
             <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-md">
               Building scalable, user-focused web applications with modern technologies and clean architecture.

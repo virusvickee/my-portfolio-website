@@ -1,27 +1,16 @@
 {
   "name": "Vikas Uniyal - Portfolio",
-  "short_name": "Vikas Portfolio",
-  "description": "Full Stack Developer Portfolio - Building Smart Web Experiences",
+  "short_name": "Vikas Uniyal",
+  "description": "Full Stack Developer building smart web experiences",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0B0F19",
-  "theme_color": "#4F46E5",
-  "orientation": "portrait-primary",
+  "background_color": "#0f172a",
+  "theme_color": "#3b82f6",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "/logo.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable any"
+      "type": "image/png"
     }
-  ],
-  "categories": ["portfolio", "developer", "technology"],
-  "lang": "en",
-  "dir": "ltr"
+  ]
 }
