@@ -21,7 +21,7 @@ const Projects = () => {
       ],
       tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Stripe', 'JWT', 'Tailwind CSS'],
       status: 'completed',
-      statusText: 'Live & Production Ready',
+      statusText: 'In Development',
       github: 'https://github.com/virusvickee/freshmart-ecommerce',
       live: 'https://fresh-hub-hero-ah4byf8mw-virusvickees-projects.vercel.app/',
       featured: true,
@@ -140,7 +140,7 @@ const Projects = () => {
       status: 'completed',
       statusText: 'Currently Live',
       github: 'https://github.com/virusvickee/my-portfolio-website',
-      live: '#',
+      live: window.location.origin,
       image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop&crop=center'
     }
   ]
