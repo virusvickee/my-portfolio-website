@@ -25,18 +25,19 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative mb-8"
           >
-            {/* Glowing background for headline */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10 rounded-2xl blur-2xl" />
+            {/* Enhanced glowing background for headline */}
+            <div className="absolute -inset-8 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-indigo-600/20 rounded-3xl blur-3xl animate-pulse" />
+            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 rounded-2xl blur-xl" />
             
-            <h1 className="heading-hero relative">
+            <h1 className="heading-hero relative floating-animation">
               <span className="inline-block">Hi, I am </span>
-              <span className="relative inline-block">
+              <span className="relative inline-block glow-effect">
                 <span className="gradient-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent font-extrabold">
                   Vikas
                 </span>
-                {/* Animated underline */}
+                {/* Enhanced animated underline */}
                 <motion.div 
-                  className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+                  className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full pulse-glow"
                   initial={{ width: 0 }}
                   animate={{ width: "100%" }}
                   transition={{ duration: 1, delay: 1 }}
@@ -99,13 +100,14 @@ const Hero = () => {
             <motion.a 
               href="/Vikas_Uniyal_Resume.pdf"
               download="Vikas_Uniyal_Resume.pdf"
-              className="relative group overflow-hidden"
+              className="relative group overflow-hidden cursor-hover"
+              data-cursor-text="Download"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl" />
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-300" />
-              <div className="relative flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white font-semibold">
+              <div className="relative flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white font-semibold glow-effect">
                 <Download size={18} />
                 <span>Download Resume</span>
               </div>
@@ -113,7 +115,8 @@ const Hero = () => {
             
             <motion.button 
               onClick={() => scrollToSection('projects')}
-              className="relative group"
+              className="relative group cursor-hover"
+              data-cursor-text="View Work"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

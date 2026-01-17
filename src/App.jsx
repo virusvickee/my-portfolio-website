@@ -1,5 +1,8 @@
 import React from 'react'
 import AnimatedBackground from './components/AnimatedBackground'
+import ParticleBackground from './components/ParticleBackground'
+import FloatingShapes from './components/FloatingShapes'
+import CustomCursor from './components/CustomCursor'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -19,6 +22,9 @@ import ChatAssistant from './components/ChatAssistant'
 function App() {
   return (
     <div className="min-h-screen relative">
+      <CustomCursor />
+      <ParticleBackground />
+      <FloatingShapes />
       <AnimatedBackground />
       <Navbar />
       <Hero />

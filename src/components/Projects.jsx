@@ -178,7 +178,8 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="premium-card overflow-hidden hover-glow group h-full flex flex-col"
+              className="premium-card glass-morphism overflow-hidden hover-glow group h-full flex flex-col cursor-hover"
+              data-cursor-text="Explore"
             >
               {/* Project Image */}
               <div className="aspect-video relative overflow-hidden">
@@ -240,7 +241,8 @@ const Projects = () => {
                 <div className="flex space-x-4 mt-auto">
                   <button
                     onClick={() => setSelectedProject(project)}
-                    className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200 group/link"
+                    className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200 group/link cursor-hover"
+                    data-cursor-text="Details"
                   >
                     <Eye size={18} className="group-hover/link:text-indigo-400 transition-colors duration-200" />
                     <span>View Details</span>
@@ -250,7 +252,8 @@ const Projects = () => {
                     href={project.github} 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200 group/link"
+                    className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200 group/link cursor-hover"
+                    data-cursor-text="Code"
                   >
                     <Github size={18} className="group-hover/link:text-indigo-400 transition-colors duration-200" />
                     <span>Code</span>
@@ -260,7 +263,8 @@ const Projects = () => {
                     href={project.live} 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-primary text-sm px-4 py-2 flex items-center space-x-2"
+                    className="btn-primary text-sm px-4 py-2 flex items-center space-x-2 glow-effect cursor-hover"
+                    data-cursor-text="Live Demo"
                   >
                     <ExternalLink size={16} />
                     <span>Live</span>
