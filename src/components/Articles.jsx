@@ -1,9 +1,37 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Calendar, Clock, ArrowRight } from 'lucide-react'
-import { allArticles } from '../data/articles'
+import { Calendar, Clock, ArrowRight, ExternalLink } from 'lucide-react'
 
 const Articles = ({ onNavigateToBlog }) => {
+  const articles = [
+    {
+      title: 'Building Scalable React Applications with Modern Architecture',
+      excerpt: 'Learn how to structure React applications for scalability using modern patterns, state management, and performance optimization techniques.',
+      date: '2024-01-15',
+      readTime: '8 min read',
+      category: 'React',
+      image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=400&fit=crop',
+      link: 'https://dev.to/virusvickee/building-scalable-react-applications'
+    },
+    {
+      title: 'AI Integration in Web Development: A Practical Guide',
+      excerpt: 'Explore practical ways to integrate AI APIs into web applications, from chatbots to recommendation systems and automated workflows.',
+      date: '2024-01-10',
+      readTime: '12 min read',
+      category: 'AI/ML',
+      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
+      link: 'https://medium.com/@vikasuniyalcsa/ai-integration-web-development'
+    },
+    {
+      title: 'Full-Stack Development with MERN: Best Practices',
+      excerpt: 'Complete guide to building production-ready applications using MongoDB, Express.js, React, and Node.js with security and performance in mind.',
+      date: '2024-01-05',
+      readTime: '15 min read',
+      category: 'Full-Stack',
+      image: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=600&h=400&fit=crop',
+      link: 'https://hashnode.com/@virusvickee/mern-stack-best-practices'
+    }
+  ]
 
   const getCategoryColor = (category) => {
     const colors = {
