@@ -8,11 +8,11 @@ import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
+import Articles from './components/Articles'
 import Timeline from './components/Timeline'
 import Certifications from './components/Certifications'
 import StatsCounter from './components/StatsCounter'
 import Testimonials from './components/Testimonials'
-import Blog from './components/Blog'
 import Contact from './components/Contact'
 import Newsletter from './components/Newsletter'
 import Footer from './components/Footer'
@@ -31,11 +31,11 @@ function App() {
       <About />
       <Skills />
       <Projects />
+      <Articles />
       <Timeline />
       <Certifications />
       <StatsCounter />
       <Testimonials />
-      <Blog />
       <Newsletter />
       <Contact />
       <Footer />
