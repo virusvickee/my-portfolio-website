@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 const CustomCursor = () => {
   const cursorRef = useRef(null)
   const followerRef = useRef(null)
+  const animationFrameIdRef = useRef(null)
   const [isHovering, setIsHovering] = useState(false)
   const [cursorText, setCursorText] = useState('')
 
@@ -34,7 +35,7 @@ const CustomCursor = () => {
         follower.style.top = followerY + 'px'
       }
       
-      requestAnimationFrame(animateFollower)
+      animationFrameIdRef.current = requestAnimationFrame(animateFollower)
     }
 
     const handleMouseEnter = (e) => {
@@ -64,6 +65,9 @@ const CustomCursor = () => {
       document.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('mouseenter', handleMouseEnter, true)
       document.removeEventListener('mouseleave', handleMouseLeave, true)
+      if (animationFrameIdRef.current) {
+        cancelAnimationFrame(animationFrameIdRef.current)
+      }
     }
   }, [])
 
@@ -72,19 +76,20 @@ const CustomCursor = () => {
       {/* Main cursor */}
       <div
         ref={cursorRef}
-        className={`fixed w-4 h-4 bg-indigo-500 rounded-full pointer-events-none z-50 transition-transform duration-200 ${
-          isHovering ? 'scale-150' : 'scale-100'
-        }`}
-        style={{ transform: 'translate(-50%, -50%)' }}
+        className="fixed w-4 h-4 bg-indigo-500 rounded-full pointer-events-none z-50 transition-transform duration-200"
+        style={{ 
+          transform: `translate(-50%, -50%) scale(${isHovering ? 1.5 : 1})` 
+        }}
       />
       
       {/* Follower cursor */}
       <div
         ref={followerRef}
-        className={`fixed w-8 h-8 border-2 border-indigo-400/50 rounded-full pointer-events-none z-40 transition-all duration-300 ${
-          isHovering ? 'scale-200 border-indigo-300' : 'scale-100'
-        }`}
-        style={{ transform: 'translate(-50%, -50%)' }}
+        className="fixed w-8 h-8 border-2 border-indigo-400/50 rounded-full pointer-events-none z-40 transition-all duration-300"
+        style={{ 
+          transform: `translate(-50%, -50%) scale(${isHovering ? 1.5 : 1})`,
+          borderColor: isHovering ? 'rgb(165 180 252)' : 'rgba(129, 140, 248, 0.5)'
+        }}
       >
         {cursorText && (
           <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-black/80 text-white text-xs rounded whitespace-nowrap">

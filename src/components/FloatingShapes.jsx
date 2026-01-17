@@ -6,6 +6,7 @@ const FloatingShapes = () => {
   const sceneRef = useRef(null)
   const rendererRef = useRef(null)
   const animationRef = useRef(null)
+  const shapesRef = useRef([])
 
   useEffect(() => {
     if (!mountRef.current) return
@@ -47,7 +48,7 @@ const FloatingShapes = () => {
       mesh.position.y = (Math.random() - 0.5) * 20
       mesh.position.z = (Math.random() - 0.5) * 20
       
-      // Random rotation speed
+      // Random rotation speed and floating parameters
       mesh.userData = {
         rotationSpeed: {
           x: (Math.random() - 0.5) * 0.02,
@@ -55,13 +56,15 @@ const FloatingShapes = () => {
           z: (Math.random() - 0.5) * 0.02
         },
         floatSpeed: Math.random() * 0.02 + 0.01,
-        floatOffset: Math.random() * Math.PI * 2
+        floatOffset: Math.random() * Math.PI * 2,
+        initialY: mesh.position.y
       }
       
       shapes.push(mesh)
       scene.add(mesh)
     }
 
+    shapesRef.current = shapes
     camera.position.z = 15
 
     // Animation loop
@@ -72,8 +75,8 @@ const FloatingShapes = () => {
         shape.rotation.y += shape.userData.rotationSpeed.y
         shape.rotation.z += shape.userData.rotationSpeed.z
         
-        // Floating motion
-        shape.position.y += Math.sin(time * 0.001 * shape.userData.floatSpeed + shape.userData.floatOffset) * 0.01
+        // Floating motion - use initial Y to avoid cumulative drift
+        shape.position.y = shape.userData.initialY + Math.sin(time * 0.001 * shape.userData.floatSpeed + shape.userData.floatOffset) * 0.5
       })
       
       renderer.render(scene, camera)
@@ -96,6 +99,16 @@ const FloatingShapes = () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current)
       }
+      // Dispose of mesh geometries and materials
+      shapesRef.current.forEach((mesh) => {
+        if (mesh.geometry) {
+          mesh.geometry.dispose()
+        }
+        if (mesh.material) {
+          mesh.material.dispose()
+        }
+        scene.remove(mesh)
+      })
       if (mountRef.current && renderer.domElement) {
         mountRef.current.removeChild(renderer.domElement)
       }

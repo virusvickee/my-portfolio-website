@@ -7,16 +7,10 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    cursor: none;
   }
   
   body {
     @apply bg-[#0B0F19] text-white font-['Inter'] antialiased;
-    cursor: none;
-  }
-  
-  * {
-    cursor: none !important;
   }
 }
 
@@ -154,6 +148,38 @@
     }
     to {
       box-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .floating-animation {
+      animation: none;
+    }
+    
+    .pulse-glow {
+      animation: none;
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+    }
+    
+    @keyframes pulseGlow {
+      from, to {
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+      }
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .floating-animation {
+      animation: none;
+    }
+    
+    .pulse-glow {
+      animation: none;
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
     }
   }
   
