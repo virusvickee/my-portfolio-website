@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Calendar, Clock, ArrowRight, ExternalLink } from 'lucide-react'
 
-const Articles = () => {
+const Articles = ({ onNavigateToBlog }) => {
   const articles = [
     {
       title: 'Building Scalable React Applications with Modern Architecture',
@@ -38,7 +38,7 @@ const Articles = () => {
       readTime: '10 min read',
       category: 'CSS',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop',
-      link: 'https://css-tricks.com/author/vikas-uniyal/'
+      link: 'https://css-tricks.com/a-complete-guide-to-css-grid/'
     },
     {
       title: 'Database Design Patterns for Modern Applications',
@@ -166,15 +166,13 @@ const Articles = () => {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <a 
-            href="https://dev.to/virusvickee"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button 
+            onClick={onNavigateToBlog}
             className="btn-primary inline-flex items-center space-x-2"
           >
             <span>View All Articles</span>
             <ExternalLink size={18} />
-          </a>
+          </button>
         </motion.div>
       </div>
     </section>

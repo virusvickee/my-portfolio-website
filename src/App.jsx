@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AnimatedBackground from './components/AnimatedBackground'
 import ParticleBackground from './components/ParticleBackground'
 import FloatingShapes from './components/FloatingShapes'
@@ -9,6 +9,7 @@ import About from './components/About'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Articles from './components/Articles'
+import BlogPage from './components/BlogPage'
 import Timeline from './components/Timeline'
 import Certifications from './components/Certifications'
 import StatsCounter from './components/StatsCounter'
@@ -20,6 +21,20 @@ import ScrollToTop from './components/ScrollToTop'
 import ChatAssistant from './components/ChatAssistant'
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('portfolio')
+
+  if (currentPage === 'blog') {
+    return (
+      <div className="min-h-screen relative">
+        <FloatingShapes />
+        <CustomCursor />
+        <ParticleBackground />
+        <AnimatedBackground />
+        <BlogPage onBack={() => setCurrentPage('portfolio')} />
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen relative">
       <FloatingShapes />
@@ -31,7 +46,7 @@ function App() {
       <About />
       <Skills />
       <Projects />
-      <Articles />
+      <Articles onNavigateToBlog={() => setCurrentPage('blog')} />
       <Timeline />
       <Certifications />
       <StatsCounter />
