@@ -45,7 +45,7 @@ const Projects = () => {
       status: 'completed',
       statusText: 'Completed',
       github: 'https://github.com/virusvickee',
-      live: 'https://collage-management-system-principal.netlify.app/',
+      live: 'https://principal-s-command-center.vercel.app/',
       featured: true,
       image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop&crop=center'
     },
