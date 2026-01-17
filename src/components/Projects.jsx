@@ -104,10 +104,10 @@ const Projects = () => {
         'Weather and travel alerts'
       ],
       tech: ['React', 'Express', 'MongoDB', 'Google Maps API', 'OpenAI API'],
-      status: 'development',
-      statusText: 'Under Development',
+      status: 'completed',
+      statusText: 'Completed',
       github: 'https://github.com/virusvickee',
-      live: '#',
+      live: 'https://ai-travel-companion-eta.vercel.app/',
       image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&h=400&fit=crop&crop=center'
     },
     {
