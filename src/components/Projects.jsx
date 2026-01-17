@@ -7,7 +7,7 @@ const Projects = () => {
   const projects = [
     {
       title: 'FreshMart - Grocery eCommerce Platform',
-      description: 'Modern grocery eCommerce platform designed to provide a smooth and secure online shopping experience with seamless checkout flow.',
+      description: 'Modern grocery eCommerce platform with secure shopping experience, product browsing, cart management, and seamless checkout flow using MERN stack architecture.',
       longDescription: 'FreshMart is a modern grocery eCommerce platform designed to provide a smooth and secure online shopping experience. Users can browse products by category, search items, add them to the cart, and place orders through a seamless checkout flow. The application follows a scalable MERN architecture with secure APIs, optimized database design, and a responsive user interface.',
       features: [
         'User registration & login with JWT authentication',
@@ -27,7 +27,7 @@ const Projects = () => {
     },
     {
       title: 'Smart College Management System',
-      description: 'Comprehensive system with student & faculty modules, attendance tracking, grade management, timetable, and analytics dashboard.',
+      description: 'Comprehensive academic management system with multi-role authentication, attendance tracking, grade management, timetable scheduling, and analytics dashboard.',
       longDescription: 'A comprehensive college management system that streamlines academic operations with dedicated modules for students and faculty. The system features real-time attendance tracking, automated grade calculations, interactive timetable scheduling, and powerful analytics dashboard. Built with scalable MERN architecture, it handles multiple user roles including students, faculty, and administrators. The platform includes automated notifications, report generation, and data visualization for better decision-making.',
       features: [
         'Multi-role authentication system (Student, Faculty, Admin)',
@@ -51,7 +51,7 @@ const Projects = () => {
     },
     {
       title: 'Smart Habit Tracker with AI Coach',
-      description: 'AI-powered habit tracking application with personalized coaching and progress analytics.',
+      description: 'AI-powered habit tracking application with personalized coaching, behavior analysis, progress analytics, and wearable device integration for lifestyle monitoring.',
       longDescription: 'An intelligent habit tracking application that leverages artificial intelligence to provide personalized coaching recommendations and detailed progress analytics. The app uses machine learning algorithms to analyze user behavior patterns, suggest optimal habit schedules, and provide motivational insights. Features include streak tracking, habit difficulty adjustment, social challenges, and integration with wearable devices for comprehensive lifestyle monitoring.',
       features: [
         'AI-powered habit recommendations based on user behavior',
@@ -76,16 +76,21 @@ const Projects = () => {
     },
     {
       title: 'Smart Inventory & Sales Assistant',
-      description: 'Intelligent inventory management system with sales tracking and automated reporting.',
-      longDescription: 'A comprehensive inventory management solution that automates stock tracking, sales monitoring, and generates intelligent reports for business optimization.',
+      description: 'Intelligent inventory management system with real-time stock tracking, automated sales reporting, supplier management, and business analytics for optimization.',
+      longDescription: 'A comprehensive inventory management solution that automates stock tracking, sales monitoring, and generates intelligent reports for business optimization. The system provides real-time inventory updates, automated alerts, and comprehensive analytics to help businesses make informed decisions.',
       features: [
-        'Real-time inventory tracking',
-        'Automated sales reporting',
+        'Real-time inventory tracking with barcode scanning',
+        'Automated sales reporting and analytics',
         'Low stock alerts and notifications',
-        'Supplier management system',
-        'Analytics and forecasting'
+        'Comprehensive supplier management system',
+        'Advanced analytics and demand forecasting',
+        'Multi-location inventory management',
+        'Purchase order automation',
+        'Integration with accounting systems',
+        'Mobile app for warehouse operations',
+        'Custom reporting and dashboard'
       ],
-      tech: ['PHP', 'MySQL', 'JavaScript', 'Python'],
+      tech: ['PHP', 'MySQL', 'JavaScript', 'Python', 'Chart.js', 'Bootstrap'],
       status: 'development',
       statusText: 'Under Development',
       github: 'https://github.com/virusvickee',
@@ -94,16 +99,21 @@ const Projects = () => {
     },
     {
       title: 'Smart Travel Planner with AI Itinerary',
-      description: 'AI-powered travel planning application with intelligent itinerary generation and mapping.',
-      longDescription: 'An intelligent travel planning platform that creates personalized itineraries using AI, integrates with mapping services, and provides comprehensive travel recommendations.',
+      description: 'AI-powered travel planning platform with intelligent itinerary generation, interactive mapping, budget tracking, and personalized recommendations engine.',
+      longDescription: 'An intelligent travel planning platform that creates personalized itineraries using AI, integrates with mapping services, and provides comprehensive travel recommendations. The application analyzes user preferences, budget constraints, and travel patterns to suggest optimal travel plans.',
       features: [
-        'AI-generated travel itineraries',
-        'Interactive map integration',
-        'Budget planning and tracking',
-        'Local recommendations engine',
-        'Weather and travel alerts'
+        'AI-generated personalized travel itineraries',
+        'Interactive map integration with route optimization',
+        'Comprehensive budget planning and tracking',
+        'Local recommendations engine with reviews',
+        'Real-time weather and travel alerts',
+        'Collaborative trip planning for groups',
+        'Booking integration for hotels and flights',
+        'Offline access to itineraries and maps',
+        'Travel document management',
+        'Social sharing and travel community'
       ],
-      tech: ['React', 'Express', 'MongoDB', 'Google Maps API', 'OpenAI API'],
+      tech: ['React', 'Express', 'MongoDB', 'Google Maps API', 'OpenAI API', 'Stripe'],
       status: 'completed',
       statusText: 'Completed',
       github: 'https://github.com/virusvickee',
@@ -112,16 +122,21 @@ const Projects = () => {
     },
     {
       title: 'Personal Portfolio (React)',
-      description: 'Modern, responsive portfolio website built with React and smooth animations.',
-      longDescription: 'A professional portfolio website showcasing projects and skills with modern design principles, smooth animations, and optimal performance.',
+      description: 'Modern, responsive portfolio website with premium design, smooth animations, dark theme, SEO optimization, and fast loading performance using React.',
+      longDescription: 'A professional portfolio website showcasing projects and skills with modern design principles, smooth animations, and optimal performance. Built with React and Tailwind CSS, featuring glassmorphism effects, responsive design, and comprehensive project showcase.',
       features: [
-        'Responsive design for all devices',
-        'Smooth animations with Framer Motion',
-        'Dark theme with premium UI',
-        'SEO optimized structure',
-        'Fast loading performance'
+        'Responsive design for all devices and screen sizes',
+        'Smooth animations with Framer Motion library',
+        'Premium dark theme with glassmorphism effects',
+        'SEO optimized structure and meta tags',
+        'Fast loading performance and optimization',
+        'Interactive project showcase with modals',
+        'Contact form with email integration',
+        'Skills visualization with progress bars',
+        'Smooth scrolling navigation',
+        'Modern UI/UX design principles'
       ],
-      tech: ['React', 'Tailwind CSS', 'Framer Motion'],
+      tech: ['React', 'Tailwind CSS', 'Framer Motion', 'Vite', 'Netlify'],
       status: 'completed',
       statusText: 'Completed',
       github: 'https://github.com/virusvickee/my-portfolio-website',
@@ -170,19 +185,20 @@ const Projects = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="premium-card glass-morphism overflow-hidden hover-glow group h-full flex flex-col cursor-hover"
-              data-cursor-text="Explore"
-            >
+        <div className="overflow-x-auto pb-6">
+          <div className="flex space-x-8 w-max animate-scroll hover:pause-animation">
+            {[...projects, ...projects].map((project, index) => (
+              <motion.div
+                key={`${project.title}-${index}`}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="premium-card glass-morphism overflow-hidden hover-glow group w-80 h-96 flex-shrink-0 flex flex-col cursor-hover"
+                data-cursor-text="Explore"
+              >
               {/* Project Image */}
-              <div className="aspect-video relative overflow-hidden">
+              <div className="h-32 relative overflow-hidden">
                 <img 
                   src={project.image} 
                   alt={project.title}
@@ -204,77 +220,49 @@ const Projects = () => {
                 )}
               </div>
               {/* Project Content */}
-              <div className="p-8 flex-1 flex flex-col">
-                <h3 className="heading-md text-white mb-4 group-hover:text-indigo-400 transition-colors duration-200">
+              <div className="p-4 flex-1 flex flex-col">
+                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-indigo-400 transition-colors duration-200">
                   {project.title}
                 </h3>
                 
-                <p className="text-body leading-relaxed mb-6 flex-1">
-                  {project.longDescription || project.description}
+                <p className="text-body text-sm leading-relaxed mb-3 flex-1 line-clamp-3">
+                  {project.description}
                 </p>
 
-                {/* Key Features */}
-                {project.features && (
-                  <div className="mb-6">
-                    <h4 className="text-white font-semibold mb-3 text-sm uppercase tracking-wide">Key Features</h4>
-                    <ul className="space-y-2">
-                      {project.features.slice(0, 3).map((feature, i) => (
-                        <li key={i} className="text-gray-400 text-sm flex items-start">
-                          <span className="text-indigo-400 mr-2">•</span>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {project.tech.map((tech) => (
-                    <span key={tech} className="tech-chip text-xs">
+                <div className="flex flex-wrap gap-1 mb-3">
+                  {project.tech.slice(0, 3).map((tech) => (
+                    <span key={tech} className="tech-chip text-xs px-2 py-1">
                       {tech}
                     </span>
                   ))}
                 </div>
 
                 {/* Project Links */}
-                <div className="flex space-x-4 mt-auto">
+                <div className="flex space-x-2 mt-auto">
                   <button
                     onClick={() => setSelectedProject(project)}
-                    className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200 group/link cursor-hover"
-                    data-cursor-text="Details"
+                    className="flex items-center space-x-1 text-gray-300 hover:text-white transition-colors duration-200 text-xs"
                   >
-                    <Eye size={18} className="group-hover/link:text-indigo-400 transition-colors duration-200" />
-                    <span>View Details</span>
+                    <Eye size={14} />
+                    <span>Details</span>
                   </button>
-                  
-                  <a 
-                    href={project.github} 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200 group/link cursor-hover"
-                    data-cursor-text="Code"
-                  >
-                    <Github size={18} className="group-hover/link:text-indigo-400 transition-colors duration-200" />
-                    <span>Code</span>
-                  </a>
                   
                   <a 
                     href={project.live} 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-primary text-sm px-4 py-2 flex items-center space-x-2 glow-effect cursor-hover"
-                    data-cursor-text="Live Demo"
+                    className="btn-primary text-xs px-3 py-1 flex items-center space-x-1"
                   >
-                    <ExternalLink size={16} />
+                    <ExternalLink size={12} />
                     <span>Live</span>
                   </a>
                 </div>
               </div>
 
-              {/* Remove duplicate featured badge */}
             </motion.div>
           ))}
+          </div>
         </div>
 
         {/* Project Details Modal */}

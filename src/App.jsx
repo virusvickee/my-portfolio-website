@@ -22,9 +22,9 @@ import ChatAssistant from './components/ChatAssistant'
 function App() {
   return (
     <div className="min-h-screen relative">
+      <FloatingShapes />
       <CustomCursor />
       <ParticleBackground />
-      <FloatingShapes />
       <AnimatedBackground />
       <Navbar />
       <Hero />
