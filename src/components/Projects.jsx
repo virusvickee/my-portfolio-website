@@ -68,10 +68,10 @@ const Projects = () => {
         'Detailed reports with trend visualization'
       ],
       tech: ['React', 'Python', 'TensorFlow', 'Firebase', 'OpenAI API', 'Chart.js', 'PWA'],
-      status: 'development',
-      statusText: 'Beta Testing',
+      status: 'completed',
+      statusText: 'Live Application',
       github: 'https://github.com/virusvickee/ai-habit-tracker',
-      live: '#',
+      live: 'https://ai-habit-coach-nine.vercel.app/',
       image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop&crop=center'
     },
     {
