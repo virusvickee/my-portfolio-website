@@ -5,6 +5,10 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    scroll-behavior: smooth;
+  }
+  
   html {
     scroll-behavior: smooth;
   }
