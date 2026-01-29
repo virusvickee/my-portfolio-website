@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ExternalLink, Github, CheckCircle, Clock, Wrench, X, Eye } from 'lucide-react'
 import { Card3D } from './Card3D'
+import ProjectFilters from './ProjectFilters'
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null)
+  const [filteredProjects, setFilteredProjects] = useState([])
+  
   const projects = [
     {
       title: 'FreshMart - Modern Grocery eCommerce',
@@ -186,9 +189,14 @@ const Projects = () => {
           </p>
         </motion.div>
 
+        <ProjectFilters 
+          projects={projects} 
+          onFilteredProjects={(filtered) => setFilteredProjects(filtered)}
+        />
+
         <div className="overflow-x-auto pb-6">
           <div className="flex space-x-8 w-max animate-scroll hover:pause-animation">
-            {[...projects, ...projects].map((project, index) => (
+            {(filteredProjects.length > 0 ? [...filteredProjects, ...filteredProjects] : [...projects, ...projects]).map((project, index) => (
               <Card3D key={`${project.title}-${index}`} className="w-80 h-96 flex-shrink-0">
                 <motion.div
                   initial={{ opacity: 0, x: 50 }}

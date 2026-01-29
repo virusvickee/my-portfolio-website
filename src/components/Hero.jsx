@@ -123,8 +123,8 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-6 mb-16"
           >
             <motion.a 
-              href="/Vikas_Uniyal_Resume.pdf"
-              download="Vikas_Uniyal_Resume.pdf"
+              href="/vikas_uniyal.pdf"
+              download="vikas_uniyal.pdf"
               className="relative group overflow-hidden cursor-hover"
               data-cursor-text="Download"
               whileHover={{ scale: 1.05 }}

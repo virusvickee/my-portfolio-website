@@ -7,7 +7,9 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
+import SkillTree from './components/SkillTree'
 import Projects from './components/Projects'
+import TestimonialsCarousel from './components/TestimonialsCarousel'
 import Articles from './components/Articles'
 import BlogPage from './components/BlogPage'
 import Timeline from './components/Timeline'
@@ -23,6 +25,8 @@ import SoundEffects from './components/SoundEffects'
 import ARBusinessCard from './components/ARBusinessCard'
 import CursorTrail from './components/CursorTrail'
 import ThemeToggle from './components/ThemeToggle'
+import GitHubStats from './components/GitHubStats'
+import LiveCodingActivity from './components/LiveCodingActivity'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('portfolio')
@@ -59,9 +63,19 @@ function App() {
           <Navbar />
           <DynamicContent />
           <Hero />
-          <About />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-6 mb-16">
+            <div className="lg:col-span-2">
+              <About />
+            </div>
+            <div className="space-y-8">
+              <GitHubStats />
+              <LiveCodingActivity />
+            </div>
+          </div>
           <Skills />
+          <SkillTree />
           <Projects />
+          <TestimonialsCarousel />
           <Articles onNavigateToBlog={() => setCurrentPage('blog')} />
           <Timeline />
           <Contact />
