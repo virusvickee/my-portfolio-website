@@ -132,6 +132,7 @@ const TestimonialsCarousel = () => {
           {/* Navigation Buttons */}
           <button
             onClick={prevTestimonial}
+            aria-label="Previous testimonial"
             className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-white/10 border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-200"
           >
             <ChevronLeft size={20} />
@@ -139,6 +140,7 @@ const TestimonialsCarousel = () => {
 
           <button
             onClick={nextTestimonial}
+            aria-label="Next testimonial"
             className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-white/10 border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-200"
           >
             <ChevronRight size={20} />
@@ -150,6 +152,8 @@ const TestimonialsCarousel = () => {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
+                aria-label={`Go to testimonial ${index + 1} of ${testimonials.length}`}
+                aria-current={index === currentIndex ? "true" : "false"}
                 className={`w-3 h-3 rounded-full transition-all duration-200 ${
                   index === currentIndex ? 'bg-blue-400' : 'bg-white/30'
                 }`}

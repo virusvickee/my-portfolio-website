@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Github, Linkedin, Mail, ArrowUp, ExternalLink, Clock, MapPin, Coffee } from 'lucide-react'
 
 const Footer = () => {
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [currentTime, setCurrentTime] = useState('')
-  const [visitorCount, setVisitorCount] = useState(1247)
   const [isTyping, setIsTyping] = useState(false)
 
   useEffect(() => {
@@ -31,23 +30,15 @@ const Footer = () => {
     return () => clearInterval(interval)
   }, [])
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setVisitorCount(prev => prev + Math.floor(Math.random() * 3))
-    }, 30000)
-    return () => clearInterval(interval)
-  }, [])
-
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  const particles = useMemo(() => 
+    Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      duration: 3 + Math.random() * 2,
+      delay: Math.random() * 2
+    })), []
+  )
 
   const quotes = [
     "Code is poetry written in logic",
@@ -69,6 +60,17 @@ const Footer = () => {
     return () => clearInterval(interval)
   }, [])
 
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <footer className="relative bg-gradient-to-br from-gray-900 via-blue-900/20 to-purple-900/20 overflow-hidden">
       {/* Animated wave border */}
@@ -82,22 +84,22 @@ const Footer = () => {
 
       {/* Floating particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {particles.map((particle) => (
           <motion.div
-            key={i}
+            key={particle.id}
             className="absolute w-1 h-1 bg-blue-400/30 rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${particle.left}%`,
+              top: `${particle.top}%`,
             }}
             animate={{
               y: [0, -20, 0],
               opacity: [0.3, 1, 0.3],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: particle.duration,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: particle.delay,
             }}
           />
         ))}
@@ -199,11 +201,6 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-6">Stats</h4>
             <div className="space-y-4">
-              <div className="bg-white/5 border border-white/10 rounded-lg p-4">
-                <div className="text-2xl font-bold text-blue-400">{visitorCount.toLocaleString()}</div>
-                <div className="text-gray-400 text-sm">Portfolio views</div>
-              </div>
-              
               <div className="bg-white/5 border border-white/10 rounded-lg p-4">
                 <div className="text-2xl font-bold text-purple-400">50+</div>
                 <div className="text-gray-400 text-sm">Projects completed</div>

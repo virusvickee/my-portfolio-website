@@ -18,15 +18,26 @@ const GitHubStats = () => {
       try {
         // Fetch user data
         const userResponse = await fetch('https://api.github.com/users/virusvickee')
+        if (!userResponse.ok) {
+          throw new Error(`User API error: ${userResponse.status}`)
+        }
         const userData = await userResponse.json()
 
         // Fetch repositories
         const reposResponse = await fetch('https://api.github.com/users/virusvickee/repos?sort=updated&per_page=6')
+        if (!reposResponse.ok) {
+          throw new Error(`Repos API error: ${reposResponse.status}`)
+        }
         const reposData = await reposResponse.json()
 
+        // Validate data
+        if (!userData.public_repos || !Array.isArray(reposData)) {
+          throw new Error('Invalid API response format')
+        }
+
         // Calculate stats
-        const totalStars = reposData.reduce((sum, repo) => sum + repo.stargazers_count, 0)
-        const totalForks = reposData.reduce((sum, repo) => sum + repo.forks_count, 0)
+        const totalStars = reposData.reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0)
+        const totalForks = reposData.reduce((sum, repo) => sum + (repo.forks_count || 0), 0)
 
         // Get languages
         const languages = [...new Set(reposData.map(repo => repo.language).filter(Boolean))]
@@ -35,7 +46,7 @@ const GitHubStats = () => {
           repos: userData.public_repos,
           stars: totalStars,
           forks: totalForks,
-          commits: Math.floor(Math.random() * 500) + 200, // Simulated
+          commits: 'N/A', // Remove fake data
           languages: languages.slice(0, 5)
         })
 
@@ -48,7 +59,7 @@ const GitHubStats = () => {
           repos: 25,
           stars: 45,
           forks: 12,
-          commits: 350,
+          commits: 'N/A',
           languages: ['JavaScript', 'React', 'PHP', 'Python', 'CSS']
         })
         setRecentRepos([

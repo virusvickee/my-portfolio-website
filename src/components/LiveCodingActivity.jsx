@@ -7,6 +7,8 @@ const LiveCodingActivity = () => {
   const [isActive, setIsActive] = useState(false)
   const [lastCommit, setLastCommit] = useState('')
   const [codingStreak, setCodingStreak] = useState(0)
+  const [hours, setHours] = useState(0)
+  const [coffeeCount, setCoffeeCount] = useState(0)
 
   const activities = [
     "Building React components...",
@@ -27,6 +29,12 @@ const LiveCodingActivity = () => {
     "style: Improve UI animations",
     "perf: Enhance loading performance"
   ]
+
+  useEffect(() => {
+    // Initialize stable values
+    setHours(Math.floor(Math.random() * 8) + 2)
+    setCoffeeCount(Math.floor(Math.random() * 5) + 2)
+  }, [])
 
   useEffect(() => {
     // Simulate live coding activity
@@ -113,7 +121,7 @@ const LiveCodingActivity = () => {
         </div>
         <div className="bg-white/5 rounded-lg p-3 text-center">
           <div className="text-2xl font-bold text-green-400">
-            {Math.floor(Math.random() * 8) + 2}
+            {hours}
           </div>
           <div className="text-xs text-gray-400">Hours Today</div>
         </div>
@@ -141,7 +149,7 @@ const LiveCodingActivity = () => {
       <div className="flex items-center justify-center space-x-2 mt-4 pt-4 border-t border-white/10">
         <Coffee size={16} className="text-yellow-600" />
         <span className="text-gray-400 text-sm">
-          {Math.floor(Math.random() * 5) + 2} cups today
+          {coffeeCount} cups today
         </span>
       </div>
     </motion.div>

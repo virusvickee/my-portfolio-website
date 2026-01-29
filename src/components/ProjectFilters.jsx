@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Filter, X } from 'lucide-react'
 
-const ProjectFilters = ({ projects, onFilteredProjects }) => {
+const ProjectFilters = ({ projects = [], onFilteredProjects }) => {
   const [activeFilters, setActiveFilters] = useState(['All'])
   const [isOpen, setIsOpen] = useState(false)
 
-  // Extract unique technologies from projects
-  const allTechnologies = ['All', ...new Set(projects.flatMap(project => project.tech))]
+  // Extract unique technologies from projects with defensive checks
+  const allTechnologies = useMemo(() => {
+    const safeProjects = Array.isArray(projects) ? projects : []
+    return ['All', ...new Set(safeProjects.flatMap(project => 
+      Array.isArray(project?.tech) ? project.tech : []
+    ))]
+  }, [projects])
 
   const toggleFilter = (tech) => {
     if (tech === 'All') {
@@ -23,17 +28,20 @@ const ProjectFilters = ({ projects, onFilteredProjects }) => {
     }
   }
 
-  // Filter projects based on active filters
-  const filteredProjects = activeFilters.includes('All') 
-    ? projects 
-    : projects.filter(project => 
-        project.tech.some(tech => activeFilters.includes(tech))
-      )
+  // Filter projects based on active filters with useMemo
+  const filteredProjects = useMemo(() => {
+    const safeProjects = Array.isArray(projects) ? projects : []
+    return activeFilters.includes('All') 
+      ? safeProjects 
+      : safeProjects.filter(project => 
+          Array.isArray(project?.tech) && project.tech.some(tech => activeFilters.includes(tech))
+        )
+  }, [projects, activeFilters])
 
   // Call parent callback when filters change
   useEffect(() => {
     onFilteredProjects(filteredProjects)
-  }, [activeFilters, projects, filteredProjects, onFilteredProjects])
+  }, [activeFilters, projects, onFilteredProjects])
 
   return (
     <div className="relative mb-8">
@@ -84,7 +92,9 @@ const ProjectFilters = ({ projects, onFilteredProjects }) => {
                   {tech}
                   {tech !== 'All' && (
                     <span className="ml-1 text-xs opacity-70">
-                      ({projects.filter(p => p.tech.includes(tech)).length})
+                      ({(Array.isArray(projects) ? projects : []).filter(p => 
+                        Array.isArray(p?.tech) && p.tech.includes(tech)
+                      ).length})
                     </span>
                   )}
                 </motion.button>

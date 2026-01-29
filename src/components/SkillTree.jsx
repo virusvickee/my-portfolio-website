@@ -26,7 +26,7 @@ const SkillTree = () => {
         { id: 'mysql', name: 'MySQL', level: 82, prerequisite: 'php', x: 30, y: 60 },
         { id: 'api', name: 'REST APIs', level: 88, prerequisite: 'php', x: 70, y: 60 },
         { id: 'laravel', name: 'Laravel', level: 75, prerequisite: 'php', x: 50, y: 40 },
-        { id: 'nodejs', name: 'Node.js', level: 70, prerequisite: 'javascript', x: 20, y: 20 },
+        { id: 'nodejs', name: 'Node.js', level: 70, prerequisite: 'php', x: 20, y: 20 },
         { id: 'mongodb', name: 'MongoDB', level: 65, prerequisite: 'nodejs', x: 80, y: 20 }
       ]
     },
@@ -159,11 +159,11 @@ const SkillTree = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <motion.div
-                  className={`relative w-16 h-16 rounded-full border-2 flex items-center justify-center cursor-pointer ${
+                  className={`relative w-16 h-16 rounded-full border-2 flex items-center justify-center ${
                     isUnlocked
                       ? `bg-gradient-to-r ${getSkillColor(skill.level)} border-white/30 shadow-lg`
                       : canUnlock
-                      ? 'bg-white/10 border-white/30 hover:bg-white/20'
+                      ? 'bg-white/10 border-white/30 hover:bg-white/20 cursor-pointer'
                       : 'bg-gray-800 border-gray-600 opacity-50'
                   }`}
                   whileHover={canUnlock ? { scale: 1.1 } : {}}
@@ -171,6 +171,15 @@ const SkillTree = () => {
                     boxShadow: ['0 0 0 0 rgba(59, 130, 246, 0.7)', '0 0 0 10px rgba(59, 130, 246, 0)']
                   } : {}}
                   transition={{ duration: 2, repeat: Infinity }}
+                  onClick={canUnlock && !isUnlocked ? () => setUnlockedSkills(prev => new Set([...prev, skill.id])) : undefined}
+                  tabIndex={canUnlock && !isUnlocked ? 0 : -1}
+                  role={canUnlock && !isUnlocked ? "button" : undefined}
+                  onKeyDown={canUnlock && !isUnlocked ? (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      setUnlockedSkills(prev => new Set([...prev, skill.id]))
+                    }
+                  } : undefined}
                 >
                   {getSkillIcon(skill.level)}
                   
@@ -211,7 +220,7 @@ const SkillTree = () => {
             </div>
             <div className="flex items-center space-x-2">
               <Target className="text-blue-400" size={16} />
-              <span className="text-gray-400">Intermediate (70+)</span>
+              <span className="text-gray-400">Intermediate (70-79)</span>
             </div>
           </div>
         </div>

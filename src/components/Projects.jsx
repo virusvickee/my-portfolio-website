@@ -6,7 +6,7 @@ import ProjectFilters from './ProjectFilters'
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null)
-  const [filteredProjects, setFilteredProjects] = useState([])
+  const [filteredProjects, setFilteredProjects] = useState(null)
   
   const projects = [
     {
@@ -195,8 +195,14 @@ const Projects = () => {
         />
 
         <div className="overflow-x-auto pb-6">
-          <div className="flex space-x-8 w-max animate-scroll hover:pause-animation">
-            {(filteredProjects.length > 0 ? [...filteredProjects, ...filteredProjects] : [...projects, ...projects]).map((project, index) => (
+          {filteredProjects !== null && filteredProjects.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-400 text-lg">No projects match the selected filters.</p>
+              <p className="text-gray-500 text-sm mt-2">Try adjusting your filter criteria.</p>
+            </div>
+          ) : (
+            <div className="flex space-x-8 w-max animate-scroll hover:pause-animation">
+              {(filteredProjects !== null ? [...filteredProjects, ...filteredProjects] : [...projects, ...projects]).map((project, index) => (
               <Card3D key={`${project.title}-${index}`} className="w-80 h-96 flex-shrink-0">
                 <motion.div
                   initial={{ opacity: 0, x: 50 }}
@@ -271,8 +277,9 @@ const Projects = () => {
 
             </motion.div>
               </Card3D>
-          ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Project Details Modal */}
