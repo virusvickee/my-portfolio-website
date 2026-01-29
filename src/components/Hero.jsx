@@ -18,7 +18,7 @@ const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex items-center section-padding relative overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-transparent to-blue-900/20 continuous-pulse" />
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-transparent to-blue-900/20" />
       
       <div className="container-premium relative z-10">
         <div className="max-w-4xl">
@@ -30,26 +30,26 @@ const Hero = () => {
             className="relative mb-8"
           >
             {/* Enhanced glowing background for headline */}
-            <div className="absolute -inset-8 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-indigo-600/20 rounded-3xl blur-3xl animate-pulse continuous-float" />
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 rounded-2xl blur-xl continuous-pulse" />
+            <div className="absolute -inset-8 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-indigo-600/20 rounded-3xl blur-3xl" />
+            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 rounded-2xl blur-xl" />
             
-            <h1 className="heading-hero relative floating-animation continuous-float">
-              <span className="inline-block continuous-pulse">Hi, I am </span>
+            <h1 className="heading-hero relative">
+              <span className="inline-block">Hi, I am </span>
               <span className="relative inline-block glow-effect">
                 <span className="gradient-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent font-extrabold continuous-pulse">
                   Vikas
                 </span>
                 {/* Enhanced animated underline */}
                 <motion.div 
-                  className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full pulse-glow continuous-pulse"
+                  className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full pulse-glow"
                   initial={{ width: 0 }}
                   animate={{ width: "100%" }}
                   transition={{ duration: 1, delay: 1 }}
                 />
               </span>
-              <span className="inline-block continuous-pulse"> — a </span>
+              <span className="inline-block"> — a </span>
               <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent font-bold continuous-pulse">
+                <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent font-bold">
                   <TypingAnimation 
                     text="Web Developer" 
                     delay={1500} 
@@ -67,23 +67,23 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="relative mb-12"
           >
-            <div className="glass p-6 rounded-2xl border border-white/10 backdrop-blur-sm continuous-float">
+            <div className="glass p-6 rounded-2xl border border-white/10 backdrop-blur-sm">
               <div className="text-xl md:text-2xl text-body leading-relaxed">
                 I'm a{' '}
                 <span className="relative inline-block">
-                  <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent font-semibold continuous-pulse">
+                  <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent font-semibold">
                     Full Stack Developer
                   </span>
-                  <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-indigo-400 to-purple-400 opacity-50 continuous-pulse" />
+                  <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-indigo-400 to-purple-400 opacity-50" />
                 </span>
                 {' '}building fast, reliable web applications using{' '}
-                <span className="inline-flex items-center px-2 py-1 bg-blue-500/10 border border-blue-500/20 rounded-lg text-blue-400 font-semibold mx-1 continuous-pulse">
+                <span className="inline-flex items-center px-2 py-1 bg-blue-500/10 border border-blue-500/20 rounded-lg text-blue-400 font-semibold mx-1">
                   React
                 </span>,{' '}
-                <span className="inline-flex items-center px-2 py-1 bg-purple-500/10 border border-purple-500/20 rounded-lg text-purple-400 font-semibold mx-1 continuous-pulse">
+                <span className="inline-flex items-center px-2 py-1 bg-purple-500/10 border border-purple-500/20 rounded-lg text-purple-400 font-semibold mx-1">
                   PHP
                 </span>, and{' '}
-                <span className="inline-flex items-center px-2 py-1 bg-orange-500/10 border border-orange-500/20 rounded-lg text-orange-400 font-semibold mx-1 continuous-pulse">
+                <span className="inline-flex items-center px-2 py-1 bg-orange-500/10 border border-orange-500/20 rounded-lg text-orange-400 font-semibold mx-1">
                   MySQL
                 </span>.
                 <br className="hidden md:block" />

@@ -185,6 +185,22 @@
       animation: none;
       box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
     }
+    
+    .continuous-float {
+      animation: none;
+      transform: translateY(0px) rotate(0deg);
+    }
+    
+    .continuous-rotate {
+      animation: none;
+      transform: rotate(0deg);
+    }
+    
+    .continuous-pulse {
+      animation: none;
+      opacity: 1;
+      transform: scale(1);
+    }
   }
   
   .status-badge {
