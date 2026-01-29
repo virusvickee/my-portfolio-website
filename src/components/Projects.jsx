@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ExternalLink, Github, CheckCircle, Clock, Wrench, X, Eye } from 'lucide-react'
+import { Card3D } from './Card3D'
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null)
@@ -188,15 +189,15 @@ const Projects = () => {
         <div className="overflow-x-auto pb-6">
           <div className="flex space-x-8 w-max animate-scroll hover:pause-animation">
             {[...projects, ...projects].map((project, index) => (
-              <motion.div
-                key={`${project.title}-${index}`}
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="premium-card glass-morphism overflow-hidden hover-glow group w-80 h-96 flex-shrink-0 flex flex-col cursor-hover"
-                data-cursor-text="Explore"
-              >
+              <Card3D key={`${project.title}-${index}`} className="w-80 h-96 flex-shrink-0">
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="premium-card glass-morphism overflow-hidden hover-glow group w-full h-full flex flex-col cursor-hover"
+                  data-cursor-text="Explore"
+                >
               {/* Project Image */}
               <div className="h-32 relative overflow-hidden">
                 <img 
@@ -261,6 +262,7 @@ const Projects = () => {
               </div>
 
             </motion.div>
+              </Card3D>
           ))}
           </div>
         </div>

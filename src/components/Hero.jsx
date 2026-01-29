@@ -2,6 +2,8 @@ import React from 'react'
 import { Github, Linkedin, Mail, Download, Eye } from 'lucide-react'
 import { motion } from 'framer-motion'
 import TypingAnimation from './TypingAnimation'
+import { ScrollReveal, CodeTyping } from './Animations'
+import DynamicContent from './DynamicContent'
 
 const Hero = () => {
   const scrollToSection = (sectionId) => {
@@ -21,14 +23,16 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-transparent to-blue-900/20" />
       
       <div className="container-premium relative z-10">
+        <DynamicContent />
         <div className="max-w-4xl">
           {/* Main Headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative mb-8"
-          >
+          <ScrollReveal>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative mb-8"
+            >
             {/* Enhanced glowing background for headline */}
             <div className="absolute -inset-8 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-indigo-600/20 rounded-3xl blur-3xl" />
             <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 rounded-2xl blur-xl" />
@@ -59,14 +63,30 @@ const Hero = () => {
               </span>
             </h1>
           </motion.div>
+          </ScrollReveal>
+          
+          {/* Code Example */}
+          <ScrollReveal delay={0.3}>
+            <div className="mb-8">
+              <CodeTyping 
+                code={`const developer = {
+  name: "Vikas Uniyal",
+  skills: ["React", "PHP", "MySQL"],
+  passion: "Building amazing web apps"
+};`}
+                delay={1}
+              />
+            </div>
+          </ScrollReveal>
           
           {/* Subheadline */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative mb-12"
-          >
+          <ScrollReveal delay={0.4}>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="relative mb-12"
+            >
             <div className="glass p-6 rounded-2xl border border-white/10 backdrop-blur-sm">
               <div className="text-xl md:text-2xl text-body leading-relaxed">
                 I'm a{' '}
@@ -93,6 +113,7 @@ const Hero = () => {
               </div>
             </div>
           </motion.div>
+          </ScrollReveal>
 
           {/* CTA Buttons */}
           <motion.div 

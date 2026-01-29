@@ -266,6 +266,33 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  /* Light Theme */
+  .light-theme {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --text-primary: #1a202c;
+    --text-secondary: #4a5568;
+    --border-color: #e2e8f0;
+  }
+
+  .light-theme body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--text-primary);
+  }
+
+  .light-theme .glass {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .light-theme .text-white {
+    color: var(--text-primary) !important;
+  }
+
+  .light-theme .text-body {
+    color: var(--text-secondary) !important;
+  }
   
   /* Hide scrollbar for horizontal scroll */
   .overflow-x-auto::-webkit-scrollbar {

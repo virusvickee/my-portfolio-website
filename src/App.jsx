@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { AnimatePresence } from 'framer-motion'
 import AnimatedBackground from './components/AnimatedBackground'
 import ParticleBackground from './components/ParticleBackground'
 import FloatingShapes from './components/FloatingShapes'
@@ -12,9 +13,20 @@ import BlogPage from './components/BlogPage'
 import Timeline from './components/Timeline'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import ChatBot from './components/ChatBot'
+import LoadingScreen from './components/LoadingScreen'
+import VoiceCommands from './components/VoiceCommands'
+import EasterEgg from './components/EasterEgg'
+import MiniGame from './components/MiniGame'
+import DynamicContent from './components/DynamicContent'
+import SoundEffects from './components/SoundEffects'
+import ARBusinessCard from './components/ARBusinessCard'
+import CursorTrail from './components/CursorTrail'
+import ThemeToggle from './components/ThemeToggle'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('portfolio')
+  const [isLoading, setIsLoading] = useState(true)
 
   if (currentPage === 'blog') {
     return (
@@ -25,25 +37,45 @@ function App() {
         <Navbar />
         <BlogPage onBack={() => setCurrentPage('portfolio')} />
         <Footer />
+        <VoiceCommands />
+        <MiniGame />
+        <EasterEgg />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen relative">
-      <AnimatedBackground />
-      <ParticleBackground />
-      <FloatingShapes />
-      <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Articles onNavigateToBlog={() => setCurrentPage('blog')} />
-      <Timeline />
-      <Contact />
-      <Footer />
-    </div>
+    <>
+      <AnimatePresence>
+        {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+      </AnimatePresence>
+      
+      {!isLoading && (
+        <div className="min-h-screen relative">
+          <CursorTrail />
+          <AnimatedBackground />
+          <ParticleBackground />
+          <FloatingShapes />
+          <Navbar />
+          <DynamicContent />
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Articles onNavigateToBlog={() => setCurrentPage('blog')} />
+          <Timeline />
+          <Contact />
+          <Footer />
+          <ChatBot />
+          <VoiceCommands />
+          <MiniGame />
+          <ARBusinessCard />
+          <ThemeToggle />
+          <EasterEgg />
+          <SoundEffects />
+        </div>
+      )}
+    </>
   )
 }
 
