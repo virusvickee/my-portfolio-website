@@ -59,9 +59,8 @@ const VoiceCommands = () => {
   return (
     <motion.button
       onClick={toggleListening}
-      className={`fixed top-20 right-4 md:right-6 p-2 md:p-3 rounded-full shadow-lg z-40 ${
-        isListening ? 'bg-red-500' : 'bg-blue-500'
-      } text-white`}
+      className={`p-3 rounded-full shadow-lg ${isListening ? 'bg-red-500' : 'bg-blue-500'
+        } text-white`}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       animate={isListening ? { scale: [1, 1.1, 1] } : {}}

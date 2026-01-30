@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const ARBusinessCard = () => {
   const [showQR, setShowQR] = useState(false)
-  
+
   // Generate QR code data for AR business card
   const businessCardData = {
     name: "Vikas Uniyal",
@@ -27,7 +27,7 @@ END:VCARD`
     <>
       <motion.button
         onClick={() => setShowQR(true)}
-        className="fixed top-44 right-4 md:right-6 p-2 md:p-3 bg-purple-500 text-white rounded-full shadow-lg z-40"
+        className="p-3 bg-purple-500 text-white rounded-full shadow-lg"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
@@ -40,7 +40,7 @@ END:VCARD`
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-[60]"
           >
             <motion.div
               initial={{ scale: 0.8 }}
@@ -56,10 +56,10 @@ END:VCARD`
               </button>
 
               <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-center">AR Business Card</h3>
-              
+
               <div className="bg-gray-100 p-3 md:p-4 rounded-lg mb-3 md:mb-4">
                 <div className="w-40 h-40 md:w-48 md:h-48 mx-auto bg-white border-2 border-gray-300 rounded-lg flex items-center justify-center">
-                  <img 
+                  <img
                     src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrData)}`}
                     alt="QR Code"
                     className="w-full h-full"

@@ -12,7 +12,7 @@ const MiniGame = () => {
     setGameActive(true)
     setScore(0)
     setTargets([])
-    
+
     const interval = setInterval(() => {
       if (Math.random() > 0.7) {
         const newTarget = {
@@ -21,7 +21,7 @@ const MiniGame = () => {
           y: Math.random() * 200
         }
         setTargets(prev => [...prev, newTarget])
-        
+
         setTimeout(() => {
           setTargets(prev => prev.filter(t => t.id !== newTarget.id))
         }, 2000)
@@ -44,7 +44,7 @@ const MiniGame = () => {
     <>
       <motion.button
         onClick={() => setIsOpen(true)}
-        className="fixed top-32 right-4 md:right-6 p-2 md:p-3 bg-green-500 text-white rounded-full shadow-lg z-40"
+        className="p-3 bg-green-500 text-white rounded-full shadow-lg"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
@@ -57,7 +57,7 @@ const MiniGame = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-[60]"
           >
             <motion.div
               initial={{ scale: 0.8 }}

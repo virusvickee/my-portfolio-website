@@ -1,208 +1,144 @@
 import React from 'react'
-import { Github, Linkedin, Mail, Download, Eye } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { Github, Linkedin, Mail, Download, ExternalLink, Code2, Database, Layout, Terminal } from 'lucide-react'
 import TypingAnimation from './TypingAnimation'
-import { ScrollReveal, CodeTyping } from './Animations'
-import DynamicContent from './DynamicContent'
+import GitHubActivity from './GitHubActivity'
+import SocialCard from './SocialCard'
+
+const BentoBox = ({ children, className = "", delay = 0 }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5, delay }}
+    className={`bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 hover:border-white/20 transition-all duration-300 hover:bg-white/[0.07] group ${className}`}
+  >
+    {children}
+  </motion.div>
+)
 
 const Hero = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'nearest'
-      })
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center section-padding relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-transparent to-blue-900/20" />
-      
-      <div className="container-premium relative z-10">
-        <DynamicContent />
-        <div className="max-w-4xl">
-          {/* Main Headline */}
-          <ScrollReveal>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative mb-8"
-            >
-            {/* Enhanced glowing background for headline */}
-            <div className="absolute -inset-8 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-indigo-600/20 rounded-3xl blur-3xl" />
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 rounded-2xl blur-xl" />
-            
-            <h1 className="heading-hero relative">
-              <span className="inline-block">Hi, I am </span>
-              <span className="relative inline-block glow-effect">
-                <span className="gradient-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent font-extrabold continuous-pulse">
-                  Vikas
-                </span>
-                {/* Enhanced animated underline */}
-                <motion.div 
-                  className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full pulse-glow"
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: 1, delay: 1 }}
-                />
-              </span>
-              <span className="inline-block"> — a </span>
-              <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent font-bold">
-                  <TypingAnimation 
-                    text="Web Developer" 
-                    delay={1500} 
-                    speed={100}
-                  />
-                </span>
-              </span>
-            </h1>
-          </motion.div>
-          </ScrollReveal>
-          
-          {/* Code Example */}
-          <ScrollReveal delay={0.3}>
-            <div className="mb-8">
-              <CodeTyping 
-                code={`const developer = {
-  name: "Vikas Uniyal",
-  skills: ["React", "PHP", "MySQL"],
-  passion: "Building amazing web apps"
-};`}
-                delay={1}
-              />
-            </div>
-          </ScrollReveal>
-          
-          {/* Subheadline */}
-          <ScrollReveal delay={0.4}>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="relative mb-12"
-            >
-            <div className="glass p-6 rounded-2xl border border-white/10 backdrop-blur-sm">
-              <div className="text-xl md:text-2xl text-body leading-relaxed">
-                I'm a{' '}
-                <span className="relative inline-block">
-                  <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent font-semibold">
-                    Full Stack Developer
-                  </span>
-                  <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-indigo-400 to-purple-400 opacity-50" />
-                </span>
-                {' '}building fast, reliable web applications using{' '}
-                <span className="inline-flex items-center px-2 py-1 bg-blue-500/10 border border-blue-500/20 rounded-lg text-blue-400 font-semibold mx-1">
-                  React
-                </span>,{' '}
-                <span className="inline-flex items-center px-2 py-1 bg-purple-500/10 border border-purple-500/20 rounded-lg text-purple-400 font-semibold mx-1">
-                  PHP
-                </span>, and{' '}
-                <span className="inline-flex items-center px-2 py-1 bg-orange-500/10 border border-orange-500/20 rounded-lg text-orange-400 font-semibold mx-1">
-                  MySQL
-                </span>.
-                <br className="hidden md:block" />
-                <span className="block mt-2 text-gray-300">
-                  I focus on clean UI, maintainable code, and practical solutions.
-                </span>
-              </div>
-            </div>
-          </motion.div>
-          </ScrollReveal>
+    <section id="home" className="min-h-screen flex items-center justify-center section-padding relative overflow-hidden pt-32">
+      {/* Background Ambience */}
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-transparent to-blue-900/20 pointer-events-none" />
+      <div className="absolute top-1/4 -left-64 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl opacity-50 pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-64 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl opacity-50 pointer-events-none" />
 
-          {/* CTA Buttons */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-6 mb-16"
-          >
-            <motion.a 
-              href="/vikas_uniyal.pdf"
-              download="vikas_uniyal.pdf"
-              className="relative group overflow-hidden cursor-hover"
-              data-cursor-text="Download"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl" />
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-300" />
-              <div className="relative flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white font-semibold glow-effect">
-                <Download size={18} />
-                <span>Download Resume</span>
-              </div>
-            </motion.a>
-            
-            <motion.button 
-              onClick={() => scrollToSection('projects')}
-              className="relative group cursor-hover"
-              data-cursor-text="View Work"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <div className="absolute inset-0 bg-white/5 backdrop-blur-sm border border-white/20 rounded-xl group-hover:border-white/30 transition-all duration-300" />
-              <div className="relative flex items-center space-x-2 px-8 py-4 text-white font-semibold">
-                <Eye size={18} />
-                <span>View Projects</span>
-              </div>
-            </motion.button>
-          </motion.div>
+      <div className="container-premium relative z-10 w-full">
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-4 lg:gap-6 auto-rows-[minmax(180px,auto)]">
 
-          {/* Social Links */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex items-center space-x-6"
-          >
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-              <span className="text-muted text-sm uppercase tracking-wider bg-gradient-to-r from-gray-400 to-gray-300 bg-clip-text text-transparent">
-                Connect with me
-              </span>
+          {/* 1. Intro Card (Large) */}
+          <BentoBox className="md:col-span-6 lg:col-span-8 md:row-span-2 flex flex-col justify-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-8 opacity-10">
+              <Code2 size={120} />
             </div>
-            <div className="flex space-x-4">
-              <motion.a 
-                href="https://github.com/virusvickee" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="relative group"
-                whileHover={{ scale: 1.1, y: -2 }}
+            <div>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium mb-6"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-gray-600/20 to-gray-500/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative p-3 glass rounded-xl border border-white/10 group-hover:border-white/20 transition-all duration-300">
-                  <Github size={20} className="group-hover:text-indigo-400 transition-colors duration-200" />
-                </div>
-              </motion.a>
-              <motion.a 
-                href="https://linkedin.com/in/vikas-uniyal" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="relative group"
-                whileHover={{ scale: 1.1, y: -2 }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-blue-500/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative p-3 glass rounded-xl border border-white/10 group-hover:border-white/20 transition-all duration-300">
-                  <Linkedin size={20} className="group-hover:text-blue-400 transition-colors duration-200" />
-                </div>
-              </motion.a>
-              <motion.a 
-                href="mailto:vikasuniyalcsa@gmail.com"
-                className="relative group"
-                whileHover={{ scale: 1.1, y: -2 }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-purple-500/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative p-3 glass rounded-xl border border-white/10 group-hover:border-white/20 transition-all duration-300">
-                  <Mail size={20} className="group-hover:text-purple-400 transition-colors duration-200" />
-                </div>
-              </motion.a>
+                <span className="relative flex h-2 w-2 mr-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                </span>
+                Available for work
+              </motion.div>
+
+              <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">
+                Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Vikas</span>.
+                <br />
+                I build <TypingAnimation text="scalable web apps" delay={1000} className="text-gray-400" />
+              </h1>
+
+              <p className="text-lg text-gray-400 max-w-2xl leading-relaxed mb-8">
+                Full Stack Developer specializing in reliable, high-performance applications.
+                Focused on React, PHP, and modern web standards.
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <motion.button
+                  onClick={() => scrollToSection('projects')}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-6 py-3 bg-white text-black font-semibold rounded-xl hover:bg-gray-100 transition-colors flex items-center gap-2"
+                >
+                  View Projects <ExternalLink size={18} />
+                </motion.button>
+                <motion.a
+                  href="/vikas_uniyal.pdf"
+                  download
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-6 py-3 bg-white/10 text-white font-semibold rounded-xl hover:bg-white/20 transition-colors flex items-center gap-2 border border-white/10"
+                >
+                  Download CV <Download size={18} />
+                </motion.a>
+              </div>
             </div>
-          </motion.div>
+          </BentoBox>
+
+          {/* 2. GitHub Stats Card */}
+          <div className="md:col-span-6 lg:col-span-4 md:row-span-2">
+            <GitHubActivity />
+          </div>
+
+          {/* 3. Tech Stack Card */}
+          <BentoBox className="md:col-span-3 lg:col-span-4 flex flex-col justify-between group" delay={0.2}>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                <Terminal className="text-orange-400" size={20} />
+                Tech Stack
+              </h3>
+              <Layout className="text-gray-600 group-hover:text-gray-400 transition-colors" size={20} />
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {['React', 'PHP', 'Node.js', 'MySQL', 'Tailwind', 'Next.js', 'TypeScript', 'Git'].map((tech) => (
+                <span key={tech} className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:border-white/30 transition-all cursor-default">
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <p className="text-sm text-gray-500 mt-4">
+              Constantly exploring new frameworks and tools.
+            </p>
+          </BentoBox>
+
+          {/* 4. Social & Contact Card */}
+          <BentoBox className="md:col-span-3 lg:col-span-4 bg-gradient-to-br from-indigo-900/40 to-purple-900/40" delay={0.3}>
+            <SocialCard />
+          </BentoBox>
+
+          {/* 5. Experience / Summary Card */}
+          <BentoBox className="md:col-span-6 lg:col-span-4 flex items-center justify-between" delay={0.4}>
+            <div>
+              <div className="text-3xl font-bold text-white mb-1">3+</div>
+              <div className="text-sm text-gray-400">Years Experience</div>
+            </div>
+            <div className="h-12 w-px bg-white/10" />
+            <div>
+              <div className="text-3xl font-bold text-white mb-1">20+</div>
+              <div className="text-sm text-gray-400">Projects Built</div>
+            </div>
+            <div className="h-12 w-px bg-white/10" />
+            <div>
+              <div className="text-3xl font-bold text-white mb-1">100%</div>
+              <div className="text-sm text-gray-400">Commitment</div>
+            </div>
+          </BentoBox>
+
         </div>
       </div>
     </section>

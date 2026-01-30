@@ -20,7 +20,7 @@ const ThemeToggle = () => {
   return (
     <motion.button
       onClick={() => setIsDark(!isDark)}
-      className="fixed top-56 right-4 md:right-6 p-2 md:p-3 bg-yellow-500 text-white rounded-full shadow-lg z-40"
+      className="p-3 bg-yellow-500 text-white rounded-full shadow-lg"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       animate={{ rotate: isDark ? 0 : 180 }}

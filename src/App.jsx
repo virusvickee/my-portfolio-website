@@ -9,9 +9,7 @@ import CursorTrail from './components/CursorTrail'
 // Lazy Load Heavy Components
 const ParticleBackground = lazy(() => import('./components/ParticleBackground'))
 const FloatingShapes = lazy(() => import('./components/FloatingShapes'))
-const About = lazy(() => import('./components/About'))
 const Skills = lazy(() => import('./components/Skills'))
-const SkillTree = lazy(() => import('./components/SkillTree'))
 const Projects = lazy(() => import('./components/Projects'))
 const TestimonialsCarousel = lazy(() => import('./components/TestimonialsCarousel'))
 const Articles = lazy(() => import('./components/Articles'))
@@ -20,14 +18,9 @@ const Timeline = lazy(() => import('./components/Timeline'))
 const Contact = lazy(() => import('./components/Contact'))
 const Footer = lazy(() => import('./components/Footer'))
 const ChatBot = lazy(() => import('./components/ChatBot'))
-const VoiceCommands = lazy(() => import('./components/VoiceCommands'))
 const EasterEgg = lazy(() => import('./components/EasterEgg'))
-const MiniGame = lazy(() => import('./components/MiniGame'))
 const DynamicContent = lazy(() => import('./components/DynamicContent'))
 const SoundEffects = lazy(() => import('./components/SoundEffects'))
-const ARBusinessCard = lazy(() => import('./components/ARBusinessCard'))
-const ThemeToggle = lazy(() => import('./components/ThemeToggle'))
-const GitHubStats = lazy(() => import('./components/GitHubStats'))
 const LiveCodingActivity = lazy(() => import('./components/LiveCodingActivity'))
 import ErrorBoundary from './components/ErrorBoundary'
 
@@ -52,8 +45,7 @@ function App() {
         <Navbar />
         <BlogPage onBack={() => setCurrentPage('portfolio')} />
         <Footer />
-        <VoiceCommands />
-        <MiniGame />
+        <FeaturesDrawer />
         <EasterEgg />
       </div>
     )
@@ -100,30 +92,22 @@ function App() {
           <Hero />
 
           <Suspense fallback={<div className="h-screen" />}>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-6 mb-16">
-              <div className="lg:col-span-2">
-                <About />
-              </div>
-              <div className="space-y-8">
-                <GitHubStats />
+            <div className="max-w-7xl mx-auto px-6 mb-16">
+              <div className="max-w-2xl mx-auto">
                 <LiveCodingActivity />
               </div>
             </div>
 
+
             <Skills />
-            <SkillTree />
             <Projects />
             <TestimonialsCarousel />
             <Articles onNavigateToBlog={() => setCurrentPage('blog')} />
             <Timeline />
             <Contact />
             <Footer />
-            <ChatBot />
-            <VoiceCommands />
-            <MiniGame />
-            <ARBusinessCard />
-            <ThemeToggle />
-            <EasterEgg />
+
+            {/* FeaturesDrawer removed */}
             <SoundEffects />
           </Suspense>
         </div>

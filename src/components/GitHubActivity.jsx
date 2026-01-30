@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { GitBranch, Star, GitFork, Activity } from 'lucide-react'
 
-const GitHubStats = () => {
+const GitHubActivity = () => {
   const [stats, setStats] = useState({
     repos: 0,
     stars: 0,
@@ -147,4 +147,4 @@ const GitHubStats = () => {
   )
 }
 
-export default GitHubStats
+export default GitHubActivity
