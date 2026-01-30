@@ -5,36 +5,40 @@ import { Calendar, Clock, ArrowRight, ExternalLink } from 'lucide-react'
 const Articles = ({ onNavigateToBlog }) => {
   const articles = [
     {
-      title: 'Building Scalable React Applications with Modern Architecture',
-      excerpt: 'Learn how to structure React applications for scalability using modern patterns, state management, and performance optimization techniques.',
-      date: '2024-01-15',
+      title: 'Neural Interfaces: The Dawn of Human-Computer Integration',
+      excerpt: 'Exploring the latest breakthroughs in Brain-Computer Interfaces (BCI) from Neuralink and Synchron, and what they mean for the future of human capability.',
+      date: '2025-01-20',
+      readTime: '6 min read',
+      category: 'BioTech',
+      image: 'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=800&h=500&fit=crop', // Brain/Neural abstract
+      link: '#'
+    },
+    {
+      title: 'Quantum Advantage: Beyond Binary Computing',
+      excerpt: 'How recent milestones in qubit stability are pushing us closer to solving problems deemed impossible for classical supercomputers.',
+      date: '2025-01-15',
       readTime: '8 min read',
-      category: 'React',
-      image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=400&fit=crop',
-      link: 'https://dev.to/virusvickee/building-scalable-react-applications'
+      category: 'Quantum',
+      image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&h=500&fit=crop', // Quantum chip abstract
+      link: '#'
     },
     {
-      title: 'AI Integration in Web Development: A Practical Guide',
-      excerpt: 'Explore practical ways to integrate AI APIs into web applications, from chatbots to recommendation systems and automated workflows.',
-      date: '2024-01-10',
-      readTime: '12 min read',
-      category: 'AI/ML',
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
-      link: 'https://medium.com/@vikasuniyalcsa/ai-integration-web-development'
-    },
-    {
-      title: 'Full-Stack Development with MERN: Best Practices',
-      excerpt: 'Complete guide to building production-ready applications using MongoDB, Express.js, React, and Node.js with security and performance in mind.',
-      date: '2024-01-05',
-      readTime: '15 min read',
-      category: 'Full-Stack',
-      image: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=600&h=400&fit=crop',
-      link: 'https://hashnode.com/@virusvickee/mern-stack-best-practices'
+      title: 'The New Space Race: AI in Orbital Manufacturing',
+      excerpt: 'Autonomous factories in zero-gravity? How AI is orchestrating the next generation of space stations and orbital infrastructure.',
+      date: '2025-01-08',
+      readTime: '10 min read',
+      category: 'SpaceTech',
+      image: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&h=500&fit=crop', // Space station/Orbit
+      link: '#'
     }
   ]
 
   const getCategoryColor = (category) => {
     const colors = {
+      'BioTech': 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400',
+      'Quantum': 'bg-violet-500/10 border-violet-500/20 text-violet-400',
+      'SpaceTech': 'bg-orange-500/10 border-orange-500/20 text-orange-400',
+      'Next.js': 'bg-black/50 border-white/20 text-white',
       'React': 'bg-blue-500/10 border-blue-500/20 text-blue-400',
       'AI/ML': 'bg-purple-500/10 border-purple-500/20 text-purple-400',
       'Full-Stack': 'bg-green-500/10 border-green-500/20 text-green-400',
@@ -75,13 +79,13 @@ const Articles = ({ onNavigateToBlog }) => {
             >
               {/* Article Image */}
               <div className="h-48 relative overflow-hidden">
-                <img 
-                  src={article.image} 
+                <img
+                  src={article.image}
                   alt={article.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                
+
                 {/* Category Badge */}
                 <div className={`absolute top-4 right-4 status-badge ${getCategoryColor(article.category)}`}>
                   {article.category}
@@ -93,7 +97,7 @@ const Articles = ({ onNavigateToBlog }) => {
                 <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-indigo-400 transition-colors duration-200 line-clamp-2">
                   {article.title}
                 </h3>
-                
+
                 <p className="text-body text-sm leading-relaxed mb-4 line-clamp-3">
                   {article.excerpt}
                 </p>
@@ -103,10 +107,10 @@ const Articles = ({ onNavigateToBlog }) => {
                   <div className="flex items-center space-x-4">
                     <div className="flex items-center space-x-1">
                       <Calendar size={14} />
-                      <span>{new Date(article.date).toLocaleDateString('en-US', { 
-                        month: 'short', 
-                        day: 'numeric', 
-                        year: 'numeric' 
+                      <span>{new Date(article.date).toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric'
                       })}</span>
                     </div>
                     <div className="flex items-center space-x-1">
@@ -117,7 +121,7 @@ const Articles = ({ onNavigateToBlog }) => {
                 </div>
 
                 {/* Read More Link */}
-                <a 
+                <a
                   href={article.link}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -126,6 +130,8 @@ const Articles = ({ onNavigateToBlog }) => {
                   <span>Read Article</span>
                   <ArrowRight size={16} className="group-hover/link:translate-x-1 transition-transform duration-200" />
                 </a>
+
+
               </div>
             </motion.article>
           ))}
@@ -139,7 +145,7 @@ const Articles = ({ onNavigateToBlog }) => {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <button 
+          <button
             onClick={onNavigateToBlog}
             className="btn-primary inline-flex items-center space-x-2"
           >

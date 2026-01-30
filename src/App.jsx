@@ -17,7 +17,6 @@ const BlogPage = lazy(() => import('./components/BlogPage'))
 const Timeline = lazy(() => import('./components/Timeline'))
 const Contact = lazy(() => import('./components/Contact'))
 const Footer = lazy(() => import('./components/Footer'))
-const ChatBot = lazy(() => import('./components/ChatBot'))
 const EasterEgg = lazy(() => import('./components/EasterEgg'))
 const DynamicContent = lazy(() => import('./components/DynamicContent'))
 const SoundEffects = lazy(() => import('./components/SoundEffects'))
@@ -111,7 +110,6 @@ function App() {
             {/* FeaturesDrawer removed */}
             <SoundEffects />
             <StickyCTA />
-            <ChatBot />
           </Suspense>
         </div>
       )}

@@ -119,12 +119,7 @@ const Footer = () => {
             LET'S WORK<br />
             <span className="text-white group-hover:text-blue-400 transition-colors duration-300">TOGETHER</span>
           </motion.h2>
-          <motion.div
-            className="absolute -right-4 top-1/2 w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center -rotate-12 group-hover:rotate-0 transition-transform duration-500 opacity-0 group-hover:opacity-100 hidden md:flex"
-            style={{ y: '-50%' }}
-          >
-            <span className="text-white font-bold text-sm">Click Me</span>
-          </motion.div>
+
         </div>
 
         {/* Main content */}
@@ -259,18 +254,18 @@ const Footer = () => {
                 <span>check_systems --all</span>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pl-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pl-4">
                 <div className="flex items-center space-x-3 text-gray-300">
-                  <Terminal size={16} className="text-purple-400" />
-                  <span>Core Services: <span className="text-green-400">ONLINE</span></span>
+                  <Terminal size={16} className="text-purple-400 shrink-0" />
+                  <span className="truncate">Core: <span className="text-green-400">ONLINE</span></span>
                 </div>
                 <div className="flex items-center space-x-3 text-gray-300">
-                  <Cpu size={16} className="text-blue-400" />
-                  <span>Render Engine: <span className="text-green-400">ACTIVE</span></span>
+                  <Cpu size={16} className="text-blue-400 shrink-0" />
+                  <span className="truncate">Render: <span className="text-green-400">ACTIVE</span></span>
                 </div>
                 <div className="flex items-center space-x-3 text-gray-300">
-                  <Wifi size={16} className="text-yellow-400" />
-                  <span>Latency: <span className="text-green-400">24ms</span></span>
+                  <Wifi size={16} className="text-yellow-400 shrink-0" />
+                  <span className="truncate">Ping: <span className="text-green-400">24ms</span></span>
                 </div>
               </div>
 
