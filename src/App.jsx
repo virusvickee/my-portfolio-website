@@ -1,32 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, Suspense, lazy } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import AnimatedBackground from './components/AnimatedBackground'
-import ParticleBackground from './components/ParticleBackground'
-import FloatingShapes from './components/FloatingShapes'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import About from './components/About'
-import Skills from './components/Skills'
-import SkillTree from './components/SkillTree'
-import Projects from './components/Projects'
-import TestimonialsCarousel from './components/TestimonialsCarousel'
-import Articles from './components/Articles'
-import BlogPage from './components/BlogPage'
-import Timeline from './components/Timeline'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
-import ChatBot from './components/ChatBot'
 import LoadingScreen from './components/LoadingScreen'
-import VoiceCommands from './components/VoiceCommands'
-import EasterEgg from './components/EasterEgg'
-import MiniGame from './components/MiniGame'
-import DynamicContent from './components/DynamicContent'
-import SoundEffects from './components/SoundEffects'
-import ARBusinessCard from './components/ARBusinessCard'
 import CursorTrail from './components/CursorTrail'
-import ThemeToggle from './components/ThemeToggle'
-import GitHubStats from './components/GitHubStats'
-import LiveCodingActivity from './components/LiveCodingActivity'
+
+// Lazy Load Heavy Components
+const ParticleBackground = lazy(() => import('./components/ParticleBackground'))
+const FloatingShapes = lazy(() => import('./components/FloatingShapes'))
+const About = lazy(() => import('./components/About'))
+const Skills = lazy(() => import('./components/Skills'))
+const SkillTree = lazy(() => import('./components/SkillTree'))
+const Projects = lazy(() => import('./components/Projects'))
+const TestimonialsCarousel = lazy(() => import('./components/TestimonialsCarousel'))
+const Articles = lazy(() => import('./components/Articles'))
+const BlogPage = lazy(() => import('./components/BlogPage'))
+const Timeline = lazy(() => import('./components/Timeline'))
+const Contact = lazy(() => import('./components/Contact'))
+const Footer = lazy(() => import('./components/Footer'))
+const ChatBot = lazy(() => import('./components/ChatBot'))
+const VoiceCommands = lazy(() => import('./components/VoiceCommands'))
+const EasterEgg = lazy(() => import('./components/EasterEgg'))
+const MiniGame = lazy(() => import('./components/MiniGame'))
+const DynamicContent = lazy(() => import('./components/DynamicContent'))
+const SoundEffects = lazy(() => import('./components/SoundEffects'))
+const ARBusinessCard = lazy(() => import('./components/ARBusinessCard'))
+const ThemeToggle = lazy(() => import('./components/ThemeToggle'))
+const GitHubStats = lazy(() => import('./components/GitHubStats'))
+const LiveCodingActivity = lazy(() => import('./components/LiveCodingActivity'))
+import ErrorBoundary from './components/ErrorBoundary'
+
+import { Helmet } from 'react-helmet-async'
+
+// ... existing imports
 
 function App() {
   const [currentPage, setCurrentPage] = useState('portfolio')
@@ -35,6 +42,10 @@ function App() {
   if (currentPage === 'blog') {
     return (
       <div className="min-h-screen relative">
+        <Helmet>
+          <title>Blog | Vikas Uniyal - Full Stack Developer</title>
+          <meta name="description" content="Technical articles and thoughts on web development, React, and software engineering." />
+        </Helmet>
         <AnimatedBackground />
         <ParticleBackground />
         <FloatingShapes />
@@ -49,47 +60,75 @@ function App() {
   }
 
   return (
-    <>
+    <ErrorBoundary>
       <AnimatePresence>
         {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
       </AnimatePresence>
-      
+
       {!isLoading && (
         <div className="min-h-screen relative">
+          <Helmet>
+            <title>Vikas Uniyal | Full Stack Developer</title>
+            <meta name="description" content="Portfolio of Vikas Uniyal, a Full Stack Developer specializing in React, PHP, and Modern Web Tech." />
+            <meta name="keywords" content="Vikas Uniyal, Full Stack Developer, React Developer, Web Developer, Portfolio" />
+
+            {/* Open Graph / Facebook */}
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="https://vikasuniyal.com/" />
+            <meta property="og:title" content="Vikas Uniyal | Full Stack Developer" />
+            <meta property="og:description" content="Building amazing web experiences with modern technologies." />
+            <meta property="og:image" content="/og-image.png" />
+
+            {/* Twitter */}
+            <meta property="twitter:card" content="summary_large_image" />
+            <meta property="twitter:url" content="https://vikasuniyal.com/" />
+            <meta property="twitter:title" content="Vikas Uniyal | Full Stack Developer" />
+            <meta property="twitter:description" content="Building amazing web experiences with modern technologies." />
+            <meta property="twitter:image" content="/og-image.png" />
+          </Helmet>
+
           <CursorTrail />
           <AnimatedBackground />
-          <ParticleBackground />
-          <FloatingShapes />
+          <Suspense fallback={null}>
+            <ParticleBackground />
+            <FloatingShapes />
+          </Suspense>
           <Navbar />
-          <DynamicContent />
+          <Suspense fallback={null}>
+            <DynamicContent />
+          </Suspense>
           <Hero />
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-6 mb-16">
-            <div className="lg:col-span-2">
-              <About />
+
+          <Suspense fallback={<div className="h-screen" />}>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-6 mb-16">
+              <div className="lg:col-span-2">
+                <About />
+              </div>
+              <div className="space-y-8">
+                <GitHubStats />
+                <LiveCodingActivity />
+              </div>
             </div>
-            <div className="space-y-8">
-              <GitHubStats />
-              <LiveCodingActivity />
-            </div>
-          </div>
-          <Skills />
-          <SkillTree />
-          <Projects />
-          <TestimonialsCarousel />
-          <Articles onNavigateToBlog={() => setCurrentPage('blog')} />
-          <Timeline />
-          <Contact />
-          <Footer />
-          <ChatBot />
-          <VoiceCommands />
-          <MiniGame />
-          <ARBusinessCard />
-          <ThemeToggle />
-          <EasterEgg />
-          <SoundEffects />
+
+            <Skills />
+            <SkillTree />
+            <Projects />
+            <TestimonialsCarousel />
+            <Articles onNavigateToBlog={() => setCurrentPage('blog')} />
+            <Timeline />
+            <Contact />
+            <Footer />
+            <ChatBot />
+            <VoiceCommands />
+            <MiniGame />
+            <ARBusinessCard />
+            <ThemeToggle />
+            <EasterEgg />
+            <SoundEffects />
+          </Suspense>
         </div>
       )}
-    </>
+    </ErrorBoundary>
   )
 }
 
