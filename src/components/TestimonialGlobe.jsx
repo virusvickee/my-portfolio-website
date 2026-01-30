@@ -19,23 +19,41 @@ const TestimonialGlobe = ({ locations = [], activeIndex, onLocationSelect }) => 
         renderer.setPixelRatio(window.devicePixelRatio)
         mountRef.current.appendChild(renderer.domElement)
 
-        // Globe
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.3)
+        scene.add(ambientLight)
+
+        const sunLight = new THREE.DirectionalLight(0xffffff, 1.5)
+        sunLight.position.set(10, 5, 10)
+        scene.add(sunLight)
+
+        // Globe Group
+        const globeGroup = new THREE.Group()
+        scene.add(globeGroup)
+        globeRef.current = globeGroup
+
+        // Real Earth Texture
+        const textureLoader = new THREE.TextureLoader()
+        const earthTexture = textureLoader.load('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
+        const bumpMap = textureLoader.load('https://unpkg.com/three-globe/example/img/earth-topology.png')
+
         const globeGeometry = new THREE.SphereGeometry(5, 64, 64)
-        const globeMaterial = new THREE.MeshBasicMaterial({
-            color: 0x6366f1, // Indigo-500
-            wireframe: true,
-            transparent: true,
-            opacity: 0.1
+        const globeMaterial = new THREE.MeshPhongMaterial({
+            map: earthTexture,
+            bumpMap: bumpMap,
+            bumpScale: 0.1,
+            specular: new THREE.Color('grey'),
+            shininess: 10
         })
         const globe = new THREE.Mesh(globeGeometry, globeMaterial)
-        scene.add(globe)
-        globeRef.current = globe
+        globeGroup.add(globe)
 
-        // Atmosphere Glow
+        // Atmosphere Glow (Adjusted for real globe)
         const atmosphereGeometry = new THREE.SphereGeometry(5, 64, 64)
         const atmosphereMaterial = new THREE.ShaderMaterial({
             transparent: true,
             side: THREE.BackSide,
+            blending: THREE.AdditiveBlending,
             uniforms: {},
             vertexShader: `
         varying vec3 vNormal;
@@ -47,13 +65,13 @@ const TestimonialGlobe = ({ locations = [], activeIndex, onLocationSelect }) => 
             fragmentShader: `
         varying vec3 vNormal;
         void main() {
-          float intensity = pow(0.7 - dot(vNormal, vec3(0, 0, 1.0)), 4.0);
-          gl_FragColor = vec4(0.3, 0.5, 1.0, 1.0) * intensity;
+          float intensity = pow(0.6 - dot(vNormal, vec3(0, 0, 1.0)), 3.0);
+          gl_FragColor = vec4(0.3, 0.6, 1.0, 0.5) * intensity;
         }
       `
         })
         const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial)
-        atmosphere.scale.set(1.1, 1.1, 1.1)
+        atmosphere.scale.set(1.15, 1.15, 1.15)
         scene.add(atmosphere)
 
         // Markers
@@ -61,21 +79,21 @@ const TestimonialGlobe = ({ locations = [], activeIndex, onLocationSelect }) => 
             const phi = (90 - loc.lat) * (Math.PI / 180)
             const theta = (loc.lng + 180) * (Math.PI / 180)
 
-            const r = 5.2
+            const r = 5.1 // Slightly above surface
             const x = -(r * Math.sin(phi) * Math.cos(theta))
             const z = (r * Math.sin(phi) * Math.sin(theta))
             const y = (r * Math.cos(phi))
 
-            const geometry = new THREE.SphereGeometry(0.15, 16, 16)
+            const geometry = new THREE.SphereGeometry(0.1, 16, 16)
             const material = new THREE.MeshBasicMaterial({ color: 0xffffff })
             const marker = new THREE.Mesh(geometry, material)
 
             marker.position.set(x, y, z)
             marker.userData = { id: index }
-            globe.add(marker)
+            globeGroup.add(marker)
 
             // Glow ring for active marker
-            const ringGeo = new THREE.RingGeometry(0.2, 0.25, 32)
+            const ringGeo = new THREE.RingGeometry(0.15, 0.2, 32)
             const ringMat = new THREE.MeshBasicMaterial({ color: 0x4f46e5, side: THREE.DoubleSide })
             const ring = new THREE.Mesh(ringGeo, ringMat)
             ring.lookAt(x * 2, y * 2, z * 2)
@@ -91,18 +109,21 @@ const TestimonialGlobe = ({ locations = [], activeIndex, onLocationSelect }) => 
             animationFrameId = requestAnimationFrame(animate)
 
             if (globeRef.current) {
-                globeRef.current.rotation.y += 0.002
+                globeRef.current.rotation.y += 0.001 // Slow rotation
             }
 
             // Pulse active marker
             markersRef.current.forEach((markerObj, idx) => {
                 if (idx === activeIndex) {
                     markerObj.mesh.material.color.setHex(0x4f46e5) // Active Blue
-                    const scale = 1 + Math.sin(Date.now() * 0.005) * 0.3
+                    markerObj.mesh.scale.set(1.5, 1.5, 1.5)
+
+                    const scale = 1 + Math.sin(Date.now() * 0.005) * 0.5
                     markerObj.ring.scale.set(scale, scale, scale)
                     markerObj.ring.visible = true
                 } else {
                     markerObj.mesh.material.color.setHex(0xffffff)
+                    markerObj.mesh.scale.set(1, 1, 1)
                     markerObj.ring.visible = false
                 }
             })
@@ -131,6 +152,8 @@ const TestimonialGlobe = ({ locations = [], activeIndex, onLocationSelect }) => 
             renderer.dispose()
             globeGeometry.dispose()
             globeMaterial.dispose()
+            earthTexture.dispose()
+            bumpMap.dispose()
             atmosphereGeometry.dispose()
             atmosphereMaterial.dispose()
 

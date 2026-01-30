@@ -106,6 +106,27 @@ const Footer = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-8 relative z-10">
+
+        {/* NEW: Big Typography CTA */}
+        <div className="mb-24 relative group cursor-pointer" onClick={() => scrollToSection('contact')}>
+          <motion.h2
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-[12vw] leading-none font-black text-transparent bg-clip-text bg-gradient-to-r from-white/10 via-white/30 to-white/10 bg-[length:200%_auto] hover:animate-shine transition-all duration-500 text-center md:text-left select-none"
+          >
+            LET'S WORK<br />
+            <span className="text-white group-hover:text-blue-400 transition-colors duration-300">TOGETHER</span>
+          </motion.h2>
+          <motion.div
+            className="absolute -right-4 top-1/2 w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center -rotate-12 group-hover:rotate-0 transition-transform duration-500 opacity-0 group-hover:opacity-100 hidden md:flex"
+            style={{ y: '-50%' }}
+          >
+            <span className="text-white font-bold text-sm">Click Me</span>
+          </motion.div>
+        </div>
+
         {/* Main content */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-16">
 

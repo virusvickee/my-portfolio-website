@@ -111,6 +111,7 @@ function App() {
             {/* FeaturesDrawer removed */}
             <SoundEffects />
             <StickyCTA />
+            <ChatBot />
           </Suspense>
         </div>
       )}
