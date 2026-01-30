@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Github, Linkedin, Mail, ArrowUp, ExternalLink, Clock, MapPin, Coffee } from 'lucide-react'
+import { Github, Linkedin, Mail, ArrowUp, ExternalLink, Clock, MapPin, Coffee, Terminal, Cpu, Wifi } from 'lucide-react'
 
 const Footer = () => {
   const [showBackToTop, setShowBackToTop] = useState(false)
@@ -18,7 +18,7 @@ const Footer = () => {
   useEffect(() => {
     const updateTime = () => {
       const now = new Date()
-      setCurrentTime(now.toLocaleTimeString('en-US', { 
+      setCurrentTime(now.toLocaleTimeString('en-US', {
         timeZone: 'Asia/Kolkata',
         hour12: true,
         hour: '2-digit',
@@ -30,7 +30,7 @@ const Footer = () => {
     return () => clearInterval(interval)
   }, [])
 
-  const particles = useMemo(() => 
+  const particles = useMemo(() =>
     Array.from({ length: 20 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
@@ -104,24 +104,24 @@ const Footer = () => {
           />
         ))}
       </div>
-      
+
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-8 relative z-10">
         {/* Main content */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-16">
-          
+
           {/* Brand section with animated quote */}
           <div className="lg:col-span-2">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
               <h3 className="text-3xl font-bold text-white mb-2">Vikas Uniyal</h3>
               <p className="text-blue-400 font-medium mb-6">Full Stack Developer</p>
-              
+
               {/* Animated quote */}
               <div className="h-8 mb-8">
-                <motion.p 
+                <motion.p
                   className="text-gray-300 italic"
                   key={currentQuote}
                   initial={{ opacity: 0, y: 10 }}
@@ -140,7 +140,7 @@ const Footer = () => {
                     <span className="text-green-400 text-sm">Available for projects</span>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center space-x-4 text-sm text-gray-400">
                   <div className="flex items-center space-x-1">
                     <Clock size={14} />
@@ -218,12 +218,54 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* NEW: Command Center Terminal */}
+        <div className="mb-12 border-t border-white/10 pt-12">
+          <div className="bg-black/40 backdrop-blur-md rounded-xl border border-white/10 overflow-hidden max-w-3xl mx-auto font-mono text-sm">
+            {/* Terminal Header */}
+            <div className="bg-white/5 px-4 py-2 flex items-center justify-between border-b border-white/5">
+              <div className="flex space-x-2">
+                <div className="w-3 h-3 rounded-full bg-red-500/50" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
+                <div className="w-3 h-3 rounded-full bg-green-500/50" />
+              </div>
+              <div className="text-gray-500 text-xs">vikas@portfolio:~/status</div>
+            </div>
+
+            {/* Terminal Body */}
+            <div className="p-6 space-y-4">
+              <div className="flex items-center space-x-2 text-green-400">
+                <span className="text-blue-400">➜</span>
+                <span>check_systems --all</span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pl-4">
+                <div className="flex items-center space-x-3 text-gray-300">
+                  <Terminal size={16} className="text-purple-400" />
+                  <span>Core Services: <span className="text-green-400">ONLINE</span></span>
+                </div>
+                <div className="flex items-center space-x-3 text-gray-300">
+                  <Cpu size={16} className="text-blue-400" />
+                  <span>Render Engine: <span className="text-green-400">ACTIVE</span></span>
+                </div>
+                <div className="flex items-center space-x-3 text-gray-300">
+                  <Wifi size={16} className="text-yellow-400" />
+                  <span>Latency: <span className="text-green-400">24ms</span></span>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-2 text-gray-500 animate-pulse pl-4 pt-2">
+                <span>_</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="text-gray-400 text-sm mb-4 md:mb-0">
             © 2026 Vikas Uniyal. Built with React & ❤️
           </div>
-          
+
           {/* Mini tech stack */}
           <div className="flex items-center space-x-4 text-xs text-gray-500">
             <span>React</span>

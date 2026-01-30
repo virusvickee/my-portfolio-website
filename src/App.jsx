@@ -22,6 +22,7 @@ const EasterEgg = lazy(() => import('./components/EasterEgg'))
 const DynamicContent = lazy(() => import('./components/DynamicContent'))
 const SoundEffects = lazy(() => import('./components/SoundEffects'))
 const LiveCodingActivity = lazy(() => import('./components/LiveCodingActivity'))
+const StickyCTA = lazy(() => import('./components/StickyCTA'))
 import ErrorBoundary from './components/ErrorBoundary'
 
 import { Helmet } from 'react-helmet-async'
@@ -102,13 +103,14 @@ function App() {
             <Skills />
             <Projects />
             <TestimonialsCarousel />
-            <Articles onNavigateToBlog={() => setCurrentPage('blog')} />
             <Timeline />
+            <Articles onNavigateToBlog={() => setCurrentPage('blog')} />
             <Contact />
             <Footer />
 
             {/* FeaturesDrawer removed */}
             <SoundEffects />
+            <StickyCTA />
           </Suspense>
         </div>
       )}
