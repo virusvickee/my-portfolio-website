@@ -9,6 +9,8 @@ import CursorTrail from './components/CursorTrail'
 // Lazy Load Heavy Components
 const ParticleBackground = lazy(() => import('./components/ParticleBackground'))
 const FloatingShapes = lazy(() => import('./components/FloatingShapes'))
+const About = lazy(() => import('./components/About'))
+const Services = lazy(() => import('./components/Services'))
 const Skills = lazy(() => import('./components/Skills'))
 const Projects = lazy(() => import('./components/Projects'))
 const TestimonialsCarousel = lazy(() => import('./components/TestimonialsCarousel'))
@@ -20,7 +22,7 @@ const Footer = lazy(() => import('./components/Footer'))
 const EasterEgg = lazy(() => import('./components/EasterEgg'))
 const DynamicContent = lazy(() => import('./components/DynamicContent'))
 const SoundEffects = lazy(() => import('./components/SoundEffects'))
-const LiveCodingActivity = lazy(() => import('./components/LiveCodingActivity'))
+
 const StickyCTA = lazy(() => import('./components/StickyCTA'))
 import ErrorBoundary from './components/ErrorBoundary'
 
@@ -45,7 +47,6 @@ function App() {
         <Navbar />
         <BlogPage onBack={() => setCurrentPage('portfolio')} />
         <Footer />
-        <FeaturesDrawer />
         <EasterEgg />
       </div>
     )
@@ -92,17 +93,16 @@ function App() {
           <Hero />
 
           <Suspense fallback={<div className="h-screen" />}>
-            <div className="max-w-7xl mx-auto px-6 mb-16">
-              <div className="max-w-2xl mx-auto">
-                <LiveCodingActivity />
-              </div>
-            </div>
 
 
+
+
+            <About />
+            <Services />
             <Skills />
             <Projects />
-            <TestimonialsCarousel />
             <Timeline />
+            <TestimonialsCarousel />
             <Articles onNavigateToBlog={() => setCurrentPage('blog')} />
             <Contact />
             <Footer />

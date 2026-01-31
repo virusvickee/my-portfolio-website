@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Menu, X, Download } from 'lucide-react'
+import { Menu, X, Download, Home, User, Code2, Briefcase, FileText, Clock, Mail } from 'lucide-react'
 import { motion } from 'framer-motion'
 import TypingAnimation from './TypingAnimation'
 
@@ -24,13 +24,13 @@ const Navbar = () => {
   }
 
   const navItems = [
-    { name: 'Home', id: 'home' },
-    { name: 'About', id: 'about' },
-    { name: 'Skills', id: 'skills' },
-    { name: 'Projects', id: 'projects' },
-    { name: 'Articles', id: 'articles' },
-    { name: 'Timeline', id: 'timeline' },
-    { name: 'Contact', id: 'contact' }
+    { name: 'Home', id: 'home', icon: Home },
+    { name: 'About', id: 'about', icon: User },
+    { name: 'Skills', id: 'skills', icon: Code2 },
+    { name: 'Projects', id: 'projects', icon: Briefcase },
+    { name: 'Articles', id: 'articles', icon: FileText },
+    { name: 'Timeline', id: 'timeline', icon: Clock },
+    { name: 'Contact', id: 'contact', icon: Mail }
   ]
 
   return (
@@ -90,11 +90,12 @@ const Navbar = () => {
               <motion.button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-gray-300 hover:text-white font-medium transition-colors duration-200 relative group"
+                className="flex items-center gap-2 text-gray-300 hover:text-white font-medium transition-colors duration-200 relative group"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
+                <item.icon size={16} className="text-gray-400 group-hover:text-blue-400 transition-colors" />
                 {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-500 to-blue-500 group-hover:w-full transition-all duration-300" />
               </motion.button>
@@ -122,8 +123,9 @@ const Navbar = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="block w-full text-left py-3 text-gray-300 hover:text-white font-medium transition-colors duration-200"
+                  className="flex items-center gap-3 w-full text-left py-3 text-gray-300 hover:text-white font-medium transition-colors duration-200"
                 >
+                  <item.icon size={18} className="text-gray-400" />
                   {item.name}
                 </button>
               ))}

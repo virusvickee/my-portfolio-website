@@ -1,9 +1,9 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, Download, ExternalLink, Code2, Database, Layout, Terminal } from 'lucide-react'
+import { Github, Linkedin, Mail, Download, ExternalLink, Code2, Database, Sparkles, Rocket } from 'lucide-react'
 import TypingAnimation from './TypingAnimation'
-import GitHubActivity from './GitHubActivity'
-import SocialCard from './SocialCard'
+import DeveloperActivity from './DeveloperActivity'
+
 
 const BentoBox = ({ children, className = "", delay = 0 }) => (
   <motion.div
@@ -42,28 +42,42 @@ const Hero = () => {
               <Code2 size={120} />
             </div>
             <div>
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
-                className="inline-flex items-center px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium mb-6"
-              >
-                <span className="relative flex h-2 w-2 mr-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                </span>
-                Available for work
-              </motion.div>
+              <div className="flex gap-3 mb-6">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="inline-flex items-center px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium"
+                >
+                  <span className="relative flex h-2 w-2 mr-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                  </span>
+                  Available for work
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="inline-flex items-center px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-medium"
+                >
+                  <Sparkles size={12} className="mr-1" />
+                  Full Stack Engineer
+                </motion.div>
+              </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">
                 Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Vikas</span>.
                 <br />
-                I build <TypingAnimation text="scalable web apps" delay={1000} className="text-gray-400" />
+                I build <TypingAnimation text="scalable web apps,interactive experiences,robust backends" delay={1000} className="text-gray-400" />
               </h1>
 
               <p className="text-lg text-gray-400 max-w-2xl leading-relaxed mb-8">
-                Full Stack Developer specializing in reliable, high-performance applications.
-                Focused on React, PHP, and modern web standards.
+                Turning complex problems into elegant solutions. With over 3 years of experience, I specialize in building high-performance applications using React, PHP, and modern web architectures.
+                <span className="block mt-2 text-gray-500 text-sm">
+                  Based in India • 20+ Projects Completed • Open Source Contributor
+                </span>
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -73,7 +87,7 @@ const Hero = () => {
                   whileTap={{ scale: 0.98 }}
                   className="px-6 py-3 bg-white text-black font-semibold rounded-xl hover:bg-gray-100 transition-colors flex items-center gap-2"
                 >
-                  View Projects <ExternalLink size={18} />
+                  <Rocket size={18} /> View Projects
                 </motion.button>
                 <motion.a
                   href="/vikas_uniyal.pdf"
@@ -88,56 +102,12 @@ const Hero = () => {
             </div>
           </BentoBox>
 
-          {/* 2. GitHub Stats Card */}
+          {/* 2. Developer Activity (Merged) */}
           <div className="md:col-span-6 lg:col-span-4 md:row-span-2">
-            <GitHubActivity />
+            <DeveloperActivity />
           </div>
 
-          {/* 3. Tech Stack Card */}
-          <BentoBox className="md:col-span-3 lg:col-span-4 flex flex-col justify-between group" delay={0.2}>
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                <Terminal className="text-orange-400" size={20} />
-                Tech Stack
-              </h3>
-              <Layout className="text-gray-600 group-hover:text-gray-400 transition-colors" size={20} />
-            </div>
 
-            <div className="flex flex-wrap gap-2">
-              {['React', 'PHP', 'Node.js', 'MySQL', 'Tailwind', 'Next.js', 'TypeScript', 'Git'].map((tech) => (
-                <span key={tech} className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:border-white/30 transition-all cursor-default">
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            <p className="text-sm text-gray-500 mt-4">
-              Constantly exploring new frameworks and tools.
-            </p>
-          </BentoBox>
-
-          {/* 4. Social & Contact Card */}
-          <BentoBox className="md:col-span-3 lg:col-span-4 bg-gradient-to-br from-indigo-900/40 to-purple-900/40" delay={0.3}>
-            <SocialCard />
-          </BentoBox>
-
-          {/* 5. Experience / Summary Card */}
-          <BentoBox className="md:col-span-6 lg:col-span-4 flex items-center justify-between" delay={0.4}>
-            <div>
-              <div className="text-3xl font-bold text-white mb-1">3+</div>
-              <div className="text-sm text-gray-400">Years Experience</div>
-            </div>
-            <div className="h-12 w-px bg-white/10" />
-            <div>
-              <div className="text-3xl font-bold text-white mb-1">20+</div>
-              <div className="text-sm text-gray-400">Projects Built</div>
-            </div>
-            <div className="h-12 w-px bg-white/10" />
-            <div>
-              <div className="text-3xl font-bold text-white mb-1">100%</div>
-              <div className="text-sm text-gray-400">Commitment</div>
-            </div>
-          </BentoBox>
 
         </div>
       </div>

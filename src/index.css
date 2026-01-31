@@ -30,15 +30,15 @@
 
 @layer components {
   .glass {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+    @apply bg-white/5 backdrop-blur-sm md:backdrop-blur-xl border border-white/10;
   }
 
   .glass-card {
-    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-2xl shadow-2xl shadow-black/20;
+    @apply bg-white/[0.03] backdrop-blur-sm md:backdrop-blur-xl border border-white/[0.08] rounded-2xl shadow-2xl shadow-black/20;
   }
 
   .premium-card {
-    @apply bg-gradient-to-br from-white/[0.08] via-white/[0.03] to-white/[0.01] backdrop-blur-2xl border border-white/[0.12] rounded-3xl shadow-2xl shadow-black/40 relative overflow-hidden;
+    @apply bg-gradient-to-br from-white/[0.08] via-white/[0.03] to-white/[0.01] backdrop-blur-md md:backdrop-blur-2xl border border-white/[0.12] rounded-3xl shadow-2xl shadow-black/40 relative overflow-hidden;
   }
 
   .premium-card::before {
@@ -62,7 +62,7 @@
   }
 
   .glass-morphism {
-    @apply bg-gradient-to-br from-white/[0.12] via-white/[0.05] to-transparent backdrop-blur-3xl border border-white/[0.15] rounded-3xl shadow-2xl shadow-black/50;
+    @apply bg-gradient-to-br from-white/[0.12] via-white/[0.05] to-transparent backdrop-blur-lg md:backdrop-blur-3xl border border-white/[0.15] rounded-3xl shadow-2xl shadow-black/50;
     background-image:
       radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
       radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
