@@ -6,6 +6,30 @@ import ProjectFilters from './ProjectFilters'
 
 const projects = [
   {
+    title: 'Nexus Social Media Platform',
+    description: 'A modern social networking platform built with React and TypeScript. Features real-time interactions, responsive design, and a comprehensive UI component library for seamless user experience.',
+    longDescription: 'Nexus Social Media Platform is a modern social networking platform that combines cutting-edge web technologies to deliver a seamless user experience. Built with React and TypeScript, it features real-time social interactions, comprehensive user profiles, and a beautiful, responsive interface powered by Radix UI and Tailwind CSS.',
+    features: [
+      'User profiles and authentication system',
+      'Real-time social feed and interactions',
+      'Responsive design with mobile support',
+      'Modern UI components with Radix UI',
+      'Form validation and management',
+      'Data visualization with charts',
+      'Theme customization (light/dark mode)',
+      'Toast notifications and alerts',
+      'Interactive dialogs and modals',
+      'Smooth animations with Framer Motion'
+    ],
+    tech: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Radix UI', 'React Router', 'React Hook Form', 'Recharts', 'Framer Motion', 'Zod'],
+    status: 'completed',
+    statusText: 'Live Application',
+    github: 'https://github.com/virusvickee/verve-social',
+    live: 'https://verve-social.vercel.app/',
+    featured: true,
+    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop&crop=center'
+  },
+  {
     title: 'FreshMart - Modern Grocery eCommerce',
     description: 'Full-stack grocery eCommerce platform with secure payment integration, real-time inventory management, and responsive design for seamless shopping experience.',
     longDescription: 'FreshMart is a comprehensive grocery eCommerce platform built with MERN stack. Features include user authentication, product catalog with search and filtering, shopping cart functionality, secure checkout with Stripe integration, order tracking, and admin dashboard for inventory management.',
