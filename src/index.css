@@ -239,6 +239,10 @@
     animation: scroll 30s linear infinite;
   }
 
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+
   .pause-animation:hover {
     animation-play-state: paused;
   }

@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { User, Code, Heart, Coffee, Globe, Cpu } from 'lucide-react'
-import { Card3D } from './Card3D'
 
 const About = () => {
     const containerRef = useRef(null)
@@ -30,38 +29,60 @@ const About = () => {
 
                     {/* Left Column: Image/Visual */}
                     <div className="relative group">
-                        <Card3D className="w-full max-w-md mx-auto aspect-[4/5] rounded-3xl overflow-hidden">
-                            <motion.div
-                                className="w-full h-full relative"
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.8 }}
-                                viewport={{ once: true }}
-                            >
-                                {/* Placeholder for user image - using a tech/abstract image if no personal photo provided yet */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-black rounded-3xl overflow-hidden border border-white/10">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80"
-                                        alt="About Vikas"
-                                        className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-
-                                    {/* Floating Badges */}
-                                    <div className="absolute bottom-6 left-6 right-6 p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10">
-                                        <div className="flex items-center gap-4">
-                                            <div className="p-3 bg-blue-500/20 rounded-xl text-blue-400">
-                                                <Cpu size={24} />
-                                            </div>
-                                            <div>
-                                                <h4 className="text-white font-bold">Full Stack Dev</h4>
-                                                <p className="text-gray-400 text-xs">Architecting Digital Solutions</p>
-                                            </div>
+                        {/* Floating orbs */}
+                        <motion.div 
+                            className="absolute -top-10 -left-10 w-40 h-40 bg-indigo-500/30 rounded-full blur-3xl"
+                            animate={{ y: [0, 30, 0], x: [0, 20, 0] }}
+                            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                        />
+                        <motion.div 
+                            className="absolute -bottom-10 -right-10 w-40 h-40 bg-purple-500/30 rounded-full blur-3xl"
+                            animate={{ y: [0, -30, 0], x: [0, -20, 0] }}
+                            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                        />
+                        
+                        <motion.div
+                            className="relative w-full max-w-md mx-auto"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.8 }}
+                            viewport={{ once: true }}
+                        >
+                            {/* Rotating border */}
+                            <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-75 blur-xl group-hover:opacity-100 transition-opacity" />
+                            
+                            {/* Main image container */}
+                            <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border-2 border-white/10 backdrop-blur-sm">
+                                <img
+                                    src="/profile.png"
+                                    alt="Vikas Uniyal"
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                />
+                                
+                                {/* Gradient overlays */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
+                                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-transparent to-purple-500/20 mix-blend-overlay" />
+                                
+                                {/* Floating badge */}
+                                <motion.div 
+                                    className="absolute bottom-6 left-6 right-6 p-4 bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl"
+                                    initial={{ y: 20, opacity: 0 }}
+                                    whileInView={{ y: 0, opacity: 1 }}
+                                    transition={{ delay: 0.5, duration: 0.6 }}
+                                    viewport={{ once: true }}
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <div className="p-3 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl">
+                                            <Cpu size={20} className="text-white" />
+                                        </div>
+                                        <div>
+                                            <h4 className="text-white font-bold text-sm">Full Stack Developer</h4>
+                                            <p className="text-gray-300 text-xs">Building Digital Experiences</p>
                                         </div>
                                     </div>
-                                </div>
-                            </motion.div>
-                        </Card3D>
+                                </motion.div>
+                            </div>
+                        </motion.div>
                     </div>
 
                     {/* Right Column: Content */}
