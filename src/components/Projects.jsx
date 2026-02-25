@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ExternalLink, Github, CheckCircle, Clock, Wrench, X, Eye } from 'lucide-react'
+import { ExternalLink, Github, CheckCircle, Clock, Wrench, X, Eye, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Card3D } from './Card3D'
 import ProjectFilters from './ProjectFilters'
 
@@ -194,6 +194,21 @@ const getStatusColor = (status) => {
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null)
   const [filteredProjects, setFilteredProjects] = useState(null)
+  const [isPaused, setIsPaused] = useState(false)
+  const scrollRef = useRef(null)
+
+  const scroll = useCallback((direction) => {
+    if (!scrollRef.current) return
+    const cardWidth = 336 // 320px card + 16px gap (space-x-8 = 2rem = 32px, so 320+32=352... using 336 to slightly undershoot for feel)
+    scrollRef.current.scrollBy({
+      left: direction === 'left' ? -cardWidth : cardWidth,
+      behavior: 'smooth'
+    })
+    // Briefly pause the auto-scroll so it doesn't fight with manual scroll
+    setIsPaused(true)
+    setTimeout(() => setIsPaused(false), 1500)
+  }, [])
+
 
   return (
     <section id="projects" className="section-padding bg-gradient-to-b from-transparent to-indigo-950/10">
@@ -218,92 +233,133 @@ const Projects = () => {
           onFilteredProjects={React.useCallback((filtered) => setFilteredProjects(filtered), [])}
         />
 
-        <div className="overflow-x-auto pb-6">
-          {filteredProjects !== null && filteredProjects.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-gray-400 text-lg">No projects match the selected filters.</p>
-              <p className="text-gray-500 text-sm mt-2">Try adjusting your filter criteria.</p>
-            </div>
-          ) : (
-            <div className="flex space-x-8 w-max animate-scroll hover:pause-animation">
-              {(filteredProjects !== null ? [...filteredProjects, ...filteredProjects] : [...projects, ...projects]).map((project, index) => (
-                <Card3D key={`${project.title}-${index}`} className="w-80 h-96 flex-shrink-0">
-                  <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="premium-card glass-morphism overflow-hidden hover-glow group w-full h-full flex flex-col cursor-hover"
-                    data-cursor-text="Explore"
-                  >
-                    {/* Project Image */}
-                    <div className="h-32 relative overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        {/* Carousel Wrapper with Arrow Buttons */}
+        <div className="relative">
 
-                      {/* Status Badge */}
-                      <div className={`absolute top-4 right-4 status-badge ${getStatusColor(project.status)} flex items-center space-x-2`}>
-                        {getStatusIcon(project.status)}
-                        <span>{project.statusText}</span>
-                      </div>
+          {/* Left Arrow */}
+          <button
+            onClick={() => scroll('left')}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10
+              w-11 h-11 flex items-center justify-center
+              rounded-full border border-white/10
+              bg-black/40 backdrop-blur-md
+              text-white hover:bg-indigo-500/50 hover:border-indigo-400/50
+              shadow-lg transition-all duration-300 hover:scale-110 active:scale-95"
+            aria-label="Scroll projects left"
+          >
+            <ChevronLeft size={22} />
+          </button>
 
-                      {/* Featured Badge */}
-                      {project.featured && (
-                        <div className="absolute top-4 left-4 bg-gradient-to-r from-indigo-500 to-blue-500 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide">
-                          Featured
+          {/* Right Arrow */}
+          <button
+            onClick={() => scroll('right')}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10
+              w-11 h-11 flex items-center justify-center
+              rounded-full border border-white/10
+              bg-black/40 backdrop-blur-md
+              text-white hover:bg-indigo-500/50 hover:border-indigo-400/50
+              shadow-lg transition-all duration-300 hover:scale-110 active:scale-95"
+            aria-label="Scroll projects right"
+          >
+            <ChevronRight size={22} />
+          </button>
+
+          {/* Scrollable Carousel */}
+          <div
+            ref={scrollRef}
+            className="overflow-x-auto pb-6 scroll-smooth"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {filteredProjects !== null && filteredProjects.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-gray-400 text-lg">No projects match the selected filters.</p>
+                <p className="text-gray-500 text-sm mt-2">Try adjusting your filter criteria.</p>
+              </div>
+            ) : (
+              <div
+                className={`flex space-x-8 w-max ${isPaused ? 'pause-animation' : 'animate-scroll hover:pause-animation'
+                  }`}
+              >
+                {(filteredProjects !== null ? [...filteredProjects, ...filteredProjects] : [...projects, ...projects]).map((project, index) => (
+                  <Card3D key={`${project.title}-${index}`} className="w-80 h-96 flex-shrink-0">
+                    <motion.div
+                      initial={{ opacity: 0, x: 50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="premium-card glass-morphism overflow-hidden hover-glow group w-full h-full flex flex-col cursor-hover"
+                      data-cursor-text="Explore"
+                    >
+                      {/* Project Image */}
+                      <div className="h-32 relative overflow-hidden">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+                        {/* Status Badge */}
+                        <div className={`absolute top-4 right-4 status-badge ${getStatusColor(project.status)} flex items-center space-x-2`}>
+                          {getStatusIcon(project.status)}
+                          <span>{project.statusText}</span>
                         </div>
-                      )}
-                    </div>
-                    {/* Project Content */}
-                    <div className="p-4 flex-1 flex flex-col">
-                      <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-indigo-400 transition-colors duration-200">
-                        {project.title}
-                      </h3>
 
-                      <p className="text-body text-sm leading-relaxed mb-3 flex-1 line-clamp-3">
-                        {project.description}
-                      </p>
-
-                      {/* Tech Stack */}
-                      <div className="flex flex-wrap gap-1 mb-3">
-                        {project.tech.slice(0, 3).map((tech) => (
-                          <span key={tech} className="tech-chip text-xs px-2 py-1">
-                            {tech}
-                          </span>
-                        ))}
+                        {/* Featured Badge */}
+                        {project.featured && (
+                          <div className="absolute top-4 left-4 bg-gradient-to-r from-indigo-500 to-blue-500 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide">
+                            Featured
+                          </div>
+                        )}
                       </div>
 
-                      {/* Project Links */}
-                      <div className="flex space-x-2 mt-auto">
-                        <button
-                          onClick={() => setSelectedProject(project)}
-                          className="flex items-center space-x-1 text-gray-300 hover:text-white transition-colors duration-200 text-xs"
-                        >
-                          <Eye size={14} />
-                          <span>Details</span>
-                        </button>
+                      {/* Project Content */}
+                      <div className="p-4 flex-1 flex flex-col">
+                        <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-indigo-400 transition-colors duration-200">
+                          {project.title}
+                        </h3>
 
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn-primary text-xs px-3 py-1 flex items-center space-x-1"
-                        >
-                          <ExternalLink size={12} />
-                          <span>Live</span>
-                        </a>
+                        <p className="text-body text-sm leading-relaxed mb-3 flex-1 line-clamp-3">
+                          {project.description}
+                        </p>
+
+                        {/* Tech Stack */}
+                        <div className="flex flex-wrap gap-1 mb-3">
+                          {project.tech.slice(0, 3).map((tech) => (
+                            <span key={tech} className="tech-chip text-xs px-2 py-1">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Project Links */}
+                        <div className="flex space-x-2 mt-auto">
+                          <button
+                            onClick={() => setSelectedProject(project)}
+                            className="flex items-center space-x-1 text-gray-300 hover:text-white transition-colors duration-200 text-xs"
+                          >
+                            <Eye size={14} />
+                            <span>Details</span>
+                          </button>
+
+                          <a
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-primary text-xs px-3 py-1 flex items-center space-x-1"
+                          >
+                            <ExternalLink size={12} />
+                            <span>Live</span>
+                          </a>
+                        </div>
                       </div>
-                    </div>
 
-                  </motion.div>
-                </Card3D>
-              ))}
-            </div>
-          )}
+                    </motion.div>
+                  </Card3D>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Project Details Modal */}

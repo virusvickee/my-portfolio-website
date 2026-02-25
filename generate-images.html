@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate OG Image</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Inter', sans-serif;
+      background: #0B0F19;
+      color: white;
+    }
+    #canvas {
+      border: 2px solid #333;
+      margin: 20px 0;
+    }
+    button {
+      background: linear-gradient(to right, #6366f1, #3b82f6);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <h1>OG Image & Favicon Generator</h1>
+  <p>Click the buttons below to generate and download images for your portfolio.</p>
+  
+  <canvas id="canvas"></canvas>
+  
+  <div>
+    <button onclick="generateOGImage()">Generate OG Image (1200x630)</button>
+    <button onclick="generateFavicon()">Generate Favicon (512x512)</button>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    function generateOGImage() {
+      canvas.width = 1200;
+      canvas.height = 630;
+
+      // Background gradient
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#0B0F19');
+      gradient.addColorStop(0.5, '#1a1f3a');
+      gradient.addColorStop(1, '#1e3a8a');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Grid pattern
+      ctx.strokeStyle = 'rgba(99, 102, 241, 0.1)';
+      ctx.lineWidth = 1;
+      for (let i = 0; i < canvas.width; i += 50) {
+        ctx.beginPath();
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i, canvas.height);
+        ctx.stroke();
+      }
+      for (let i = 0; i < canvas.height; i += 50) {
+        ctx.beginPath();
+        ctx.moveTo(0, i);
+        ctx.lineTo(canvas.width, i);
+        ctx.stroke();
+      }
+
+      // Glowing orbs
+      const orb1 = ctx.createRadialGradient(200, 150, 0, 200, 150, 200);
+      orb1.addColorStop(0, 'rgba(99, 102, 241, 0.3)');
+      orb1.addColorStop(1, 'rgba(99, 102, 241, 0)');
+      ctx.fillStyle = orb1;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const orb2 = ctx.createRadialGradient(1000, 480, 0, 1000, 480, 200);
+      orb2.addColorStop(0, 'rgba(59, 130, 246, 0.3)');
+      orb2.addColorStop(1, 'rgba(59, 130, 246, 0)');
+      ctx.fillStyle = orb2;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Main text
+      ctx.font = 'bold 80px Inter, sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText('Vikas Uniyal', 100, 250);
+
+      // Gradient text
+      const textGradient = ctx.createLinearGradient(100, 300, 800, 300);
+      textGradient.addColorStop(0, '#60a5fa');
+      textGradient.addColorStop(0.5, '#a78bfa');
+      textGradient.addColorStop(1, '#6366f1');
+      ctx.fillStyle = textGradient;
+      ctx.font = 'bold 60px Inter, sans-serif';
+      ctx.fillText('Full Stack Developer', 100, 350);
+
+      // Subtitle
+      ctx.font = '32px Inter, sans-serif';
+      ctx.fillStyle = '#9ca3af';
+      ctx.fillText('Building amazing web experiences', 100, 420);
+
+      // Tech stack
+      ctx.font = '24px Inter, sans-serif';
+      ctx.fillStyle = '#6366f1';
+      ctx.fillText('React • Node.js • PHP • MongoDB • MySQL', 100, 500);
+
+      downloadImage('og-image.png');
+    }
+
+    function generateFavicon() {
+      canvas.width = 512;
+      canvas.height = 512;
+
+      // Background
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#6366f1');
+      gradient.addColorStop(1, '#3b82f6');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Letter V
+      ctx.font = 'bold 320px Inter, sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('V', canvas.width / 2, canvas.height / 2);
+
+      downloadImage('favicon-512x512.png');
+    }
+
+    function downloadImage(filename) {
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+  </script>
+</body>
+</html>
