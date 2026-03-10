@@ -54,7 +54,7 @@ const About = () => {
                             {/* Main image container */}
                             <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border-2 border-white/10 backdrop-blur-sm">
                                 <img
-                                    src="/profile.png"
+                                    src="/my photo.png"
                                     alt="Vikas Uniyal"
                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                 />

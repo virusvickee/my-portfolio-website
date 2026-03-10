@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ExternalLink, Github, CheckCircle, Clock, Wrench, X, Eye, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ExternalLink, Github, CheckCircle, Clock, Wrench, X, Eye, ChevronLeft, ChevronRight, Workflow, Cpu, BarChart3, Database } from 'lucide-react'
 import { Card3D } from './Card3D'
 import ProjectFilters from './ProjectFilters'
 
@@ -74,6 +74,35 @@ const projects = [
     live: 'https://principal-s-command-center.vercel.app/',
     featured: true,
     image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop&crop=center'
+  },
+  {
+    title: 'AI-Powered Support Ticket Automation',
+    subtitle: 'n8n + Google Gemini AI + Notion',
+    description: 'Built an end-to-end automation workflow that captures customer support emails, classifies them using Google Gemini AI, routes by priority, saves to Notion, sends auto-replies and logs to Sheets.',
+    longDescription: 'This comprehensive automation solution streamlines customer support by leveraging the power of n8n and Google Gemini AI. The workflow automatically monitors incoming Gmail messages, uses AI to understand the intent and urgency of each ticket, and performs intelligent routing. It ensures every query is logged in Notion, critical issues are flagged in Slack, and customers receive immediate, context-aware automated responses.',
+    features: [
+      'Designed full automation workflow',
+      'Configured AI classification prompts',
+      'Set up all API integrations',
+      'Built error handling and logging',
+      'Tested and deployed live workflow',
+      'Maintained execution documentation'
+    ],
+    results: [
+      '100% automated ticket routing',
+      '0 minutes manual classification',
+      'Under 1 min auto reply time',
+      '24/7 workflow runs automatically'
+    ],
+    tech: ['n8n', 'Google Gemini AI', 'Gmail', 'Notion', 'Google Sheets', 'Slack'],
+    status: 'completed',
+    statusText: 'Live ✅',
+    github: 'https://github.com/virusvickee',
+    live: '#',
+    notion: 'https://www.notion.so/31f480d70e0d80e5996bde03b6d3ebb1?v=31f480d70e0d800c833e000c8264d7a5&source=copy_link',
+    featured: true,
+    image: '/image.png',
+    type: 'automation'
   },
   {
     title: 'AI-Powered Habit Tracker',
@@ -315,8 +344,9 @@ const Projects = () => {
 
                       {/* Project Content */}
                       <div className="p-4 flex-1 flex flex-col">
-                        <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-indigo-400 transition-colors duration-200">
+                        <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-indigo-400 transition-colors duration-200 flex items-center gap-2">
                           {project.title}
+                          {project.type === 'automation' && <Workflow size={18} className="text-indigo-400" />}
                         </h3>
 
                         <p className="text-body text-sm leading-relaxed mb-3 flex-1 line-clamp-3">
@@ -348,8 +378,8 @@ const Projects = () => {
                             rel="noopener noreferrer"
                             className="btn-primary text-xs px-3 py-1 flex items-center space-x-1"
                           >
-                            <ExternalLink size={12} />
-                            <span>Live</span>
+                            {project.type === 'automation' ? <Workflow size={12} /> : <ExternalLink size={12} />}
+                            <span>{project.type === 'automation' ? 'Workflow' : 'Live'}</span>
                           </a>
                         </div>
                       </div>
@@ -403,16 +433,39 @@ const Projects = () => {
 
                 {/* Modal Content */}
                 <div className="p-8">
-                  <h2 className="heading-lg text-white mb-6">{selectedProject.title}</h2>
+                  <h2 className="heading-lg text-white mb-2">{selectedProject.title}</h2>
+                  {selectedProject.subtitle && (
+                    <p className="text-indigo-400 font-medium mb-6 text-lg">{selectedProject.subtitle}</p>
+                  )}
 
                   <p className="text-body text-lg leading-relaxed mb-8">
                     {selectedProject.longDescription}
                   </p>
 
+                  {/* Results Section */}
+                  {selectedProject.results && (
+                    <div className="mb-8 p-6 bg-indigo-500/5 border border-indigo-500/20 rounded-2xl">
+                      <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                        <BarChart3 size={20} className="text-indigo-400" />
+                        Key Results
+                      </h3>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        {selectedProject.results.map((result, i) => (
+                          <div key={i} className="flex items-center space-x-3">
+                            <div className="w-2 h-2 rounded-full bg-indigo-400" />
+                            <span className="text-gray-300 font-medium">{result}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   {/* All Features */}
                   {selectedProject.features && (
                     <div className="mb-8">
-                      <h3 className="text-xl font-semibold text-white mb-4">Key Features</h3>
+                      <h3 className="text-xl font-semibold text-white mb-4">
+                        {selectedProject.type === 'automation' ? 'My Role & Contributions' : 'Key Features'}
+                      </h3>
                       <div className="grid md:grid-cols-2 gap-3">
                         {selectedProject.features.map((feature, i) => (
                           <div key={i} className="flex items-start space-x-3">
@@ -438,15 +491,17 @@ const Projects = () => {
 
                   {/* Action Buttons */}
                   <div className="flex flex-wrap gap-4">
-                    <a
-                      href={selectedProject.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-secondary flex items-center space-x-2"
-                    >
-                      <Github size={20} />
-                      <span>View Source Code</span>
-                    </a>
+                    {selectedProject.github && selectedProject.github !== '#' && (
+                      <a
+                        href={selectedProject.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-secondary flex items-center space-x-2"
+                      >
+                        <Github size={20} />
+                        <span>View Source Code</span>
+                      </a>
+                    )}
 
                     <a
                       href={selectedProject.live}
@@ -454,9 +509,21 @@ const Projects = () => {
                       rel="noopener noreferrer"
                       className="btn-primary flex items-center space-x-2"
                     >
-                      <ExternalLink size={20} />
-                      <span>View Live Demo</span>
+                      {selectedProject.type === 'automation' ? <Workflow size={20} /> : <ExternalLink size={20} />}
+                      <span>{selectedProject.type === 'automation' ? 'View Workflow' : 'View Live Demo'}</span>
                     </a>
+
+                    {selectedProject.notion && (
+                      <a
+                        href={selectedProject.notion}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-secondary flex items-center space-x-2 border-indigo-500/30 hover:border-indigo-500/50"
+                      >
+                        <Database size={20} />
+                        <span>View Database</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               </motion.div>
