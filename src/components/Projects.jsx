@@ -76,6 +76,29 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop&crop=center'
   },
   {
+    title: 'Career Pulse',
+    description: 'Full-stack AI-powered career guidance platform with Python backend. Helps users discover career paths, analyze skills, and get personalized recommendations for professional growth.',
+    longDescription: 'Career Pulse is a full-stack intelligent career guidance platform that leverages AI to provide personalized career recommendations, skill gap analysis, and professional development roadmaps. Built with React frontend and Python backend for robust data processing and AI integration.',
+    features: [
+      'AI-powered career path recommendations',
+      'Skill assessment and gap analysis',
+      'Personalized learning roadmaps',
+      'Industry trends and insights',
+      'Interactive career exploration tools',
+      'Resume analysis and optimization',
+      'Job market analytics',
+      'RESTful API with Python backend',
+      'Real-time data processing',
+      'Professional networking features'
+    ],
+    tech: ['React', 'Next.js', 'TypeScript', 'Python', 'FastAPI/Flask', 'Tailwind CSS', 'AI/ML APIs', 'Vercel', 'Render'],
+    status: 'completed',
+    statusText: 'Live Application',
+    github: 'https://github.com/virusvickee',
+    live: 'https://career-pulse-gar5.vercel.app/',
+    featured: true,
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop&crop=center'
+  },  {
     title: 'AI-Powered Support Ticket Automation',
     subtitle: 'n8n + Google Gemini AI + Notion',
     description: 'Built an end-to-end automation workflow that captures customer support emails, classifies them using Google Gemini AI, routes by priority, saves to Notion, sends auto-replies and logs to Sheets.',
