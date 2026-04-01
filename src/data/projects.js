@@ -155,6 +155,26 @@ export const projectsData = [
       "3D animations with Framer Motion",
       "Glassmorphism UI with premium effects"
     ]
+  },
+  {
+    id: 9,
+    title: "BrewDesk - Self-Ordering System",
+    description: "A QR-based self-ordering system for cafes with a real-time admin dashboard, complete payment flow, and multi-tenant architecture.",
+    longDescription: "BrewDesk is a modern SaaS for cafes allowing customers to scan a QR code, order, and pay without downloading an app. It features a mobile-first PWA, a real-time Socket.IO admin dashboard for instant order updates, dynamic QR code generation, and a secure multi-tenant architecture supporting multiple cafes. It was built and shipped to production in just 4 days using an AI-augmented workflow with Claude Code and Lovable.",
+    image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop&crop=center",
+    category: "Full Stack",
+    tags: ["React", "TypeScript", "Node.js", "Express.js", "MongoDB", "Redis", "Socket.IO", "shadcn/ui", "Claude Code", "Lovable"],
+    github: "https://github.com/virusvickee",
+    demo: "https://brewdesk-order.vercel.app?cafeId=69cb93076a9ece6a8705d243&table=5",
+    featured: true,
+    status: "completed",
+    year: 2026,
+    highlights: [
+      "Mobile-first customer PWA with cart & payments",
+      "Real-time admin dashboard via Socket.IO",
+      "Dynamic cafe table QR code generator",
+      "Secure multi-tenant architecture"
+    ]
   }
 ]
 
@@ -181,5 +201,10 @@ export const allTags = [
   "Notion",
   "Gmail",
   "Google Sheets",
-  "Slack"
+  "Slack",
+  "Socket.IO",
+  "Redis",
+  "shadcn/ui",
+  "Claude Code",
+  "Lovable"
 ]
